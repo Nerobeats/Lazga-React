@@ -38,9 +38,9 @@ const Header = () => {
         <Navbar.Brand href="#home">
           <img
             src={
-              "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/assets/images/logo.png"
+              "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
             }
-            style={{ width: "10rem", height: "10rem", padding: "0" }}
+            style={{ width: "3rem", height: "3rem", padding: "0" }}
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
