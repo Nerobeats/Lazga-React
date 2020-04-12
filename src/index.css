@@ -33,15 +33,11 @@ code {
   border-radius: 5rem;
 }
 
-/* .fa-2x {
-  -webkit-text-stroke: 1px black !important;
-  color: black !important;
-} */
-
 .circle-button-sm {
   border-radius: 5rem !important;
   padding: 0.75rem 0.75rem 0.75rem 0.75rem !important;
   color: #40354e !important;
+  border: hidden !important;
 }
 
 .btn-outline-light {
@@ -57,10 +53,12 @@ code {
 
 .bg-header-top {
   background-color: #e8e8ec !important;
+  padding: 0vw 6vw 0vw 0vw !important;
 }
 
 .bg-header-bottom {
   background-color: white !important;
+  width: 100%;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -71,4 +69,38 @@ a:-webkit-any-link:hover {
   color: -webkit-link !important;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  border-bottom: solid 2px #e8e8ec;
+}
+
+/* Shop Page Styles */
+
+.category-buttons {
+  justify-content: space-between;
+  padding-right: 10rem;
+}
+
+.home-list {
+  justify-content: space-between;
+  padding-right: 10.5rem;
+}
+
+.btn-categories {
+  background: #e8e8ec !important;
+}
+
+.btn-outline-secondary {
+  background-color: white !important;
+  border: solid 2px #e8e8ec !important;
+  color: #40354e !important;
+}
+
+.btn-outline-secondary:hover {
+  color: #40354e;
+  background-color: #e8e8ec !important;
+  border: solid 2px #e8e8ec !important;
 }
