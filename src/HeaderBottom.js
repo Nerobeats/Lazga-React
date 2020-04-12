@@ -1,5 +1,6 @@
 import React from "react";
-import { Navbar, NavDropdown, Form, Nav } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
+import CategoryDropdown from "./CategoryDropdown";
 
 const HeaderBottom = () => {
   return (
@@ -8,103 +9,15 @@ const HeaderBottom = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            {/* drop down */}
-            <NavDropdown
-              title="Category"
-              id="basic-nav-dropdown"
-              style={{ padding: "0vw 3vw 0vw 3vw" }}
-            >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>{" "}
-            {/* drop down */}
-            <NavDropdown
-              title="Category"
-              id="basic-nav-dropdown"
-              style={{ padding: "0vw 3vw 0vw 3vw" }}
-            >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>{" "}
-            {/* drop down */}
-            <NavDropdown
-              title="Category"
-              id="basic-nav-dropdown"
-              style={{ padding: "0vw 3vw 0vw 3vw" }}
-            >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>{" "}
-            {/* drop down */}
-            <NavDropdown
-              title="Category"
-              id="basic-nav-dropdown"
-              style={{ padding: "0vw 3vw 0vw 3vw" }}
-            >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>{" "}
-            {/* drop down */}
-            <NavDropdown
-              title="Category"
-              id="basic-nav-dropdown"
-              style={{ padding: "0vw 3vw 0vw 3vw" }}
-            >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>{" "}
-            {/* drop down */}
-            <NavDropdown
-              title="Category"
-              id="basic-nav-dropdown"
-              style={{ padding: "0vw 2vw 0vw 2vw" }}
-            >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>{" "}
-          </Nav>{" "}
+            <CategoryDropdown />
+            <CategoryDropdown />
+            <CategoryDropdown />
+            <CategoryDropdown />
+            <CategoryDropdown />
+            <CategoryDropdown />
+            <CategoryDropdown />
+            <CategoryDropdown />
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </div>

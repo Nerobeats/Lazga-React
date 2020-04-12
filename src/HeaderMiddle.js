@@ -22,12 +22,21 @@ const HeaderMiddle = () => {
       expand="lg"
       style={{ padding: "1vh 7vw 1vh 7vw" }}
     >
-      <Navbar.Brand href="#home">
+      <Navbar.Brand
+        href="#home"
+        style={{
+          padding: "0rem 0rem 0rem 0rem",
+        }}
+      >
         <img
           src={
-            "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
+            "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo-name.png"
           }
-          style={{ width: "4rem", height: "4rem", padding: "0" }}
+          style={{
+            width: "8.5rem",
+            height: "3.5rem",
+            padding: "0rem 0rem 0rem 0rem",
+          }}
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -40,7 +49,7 @@ const HeaderMiddle = () => {
               aria-describedby="search"
               size="lg"
               style={{
-                padding: "1.75vw 35vw 1.75vw 1vw",
+                padding: "1.25vw 35vw 1.25vw 1vw",
                 borderColor: "#e8e8ec",
                 backgroundColor: "#e8e8ec",
               }}

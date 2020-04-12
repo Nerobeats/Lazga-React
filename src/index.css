@@ -29,6 +29,11 @@ code {
 }
 
 /* Header */
+
+.header-col {
+  padding: 0rem 0rem 0rem 0rem !important;
+}
+
 .search-bar {
   border-radius: 5rem;
 }
@@ -53,7 +58,7 @@ code {
 
 .bg-header-top {
   background-color: #e8e8ec !important;
-  padding: 0vw 6vw 0vw 0vw !important;
+  padding: 0vw 8vw 0vw 0vw !important;
 }
 
 .bg-header-bottom {
@@ -77,6 +82,24 @@ a:-webkit-any-link:hover {
   border-bottom: solid 2px #e8e8ec;
 }
 
+/* .dropdown .dropdown-menu {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+
+  max-height: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.dropdown.show .dropdown-menu {
+  max-height: 100vh;
+  opacity: 1;
+} */
+
 /* Shop Page Styles */
 
 .category-buttons {
@@ -86,7 +109,7 @@ a:-webkit-any-link:hover {
 
 .home-list {
   justify-content: space-between;
-  padding-right: 10.5rem;
+  padding-right: 10rem;
 }
 
 .btn-categories {
@@ -103,4 +126,29 @@ a:-webkit-any-link:hover {
   color: #40354e;
   background-color: #e8e8ec !important;
   border: solid 2px #e8e8ec !important;
+}
+
+/* Item Card Styles */
+
+.circle-button-xsm {
+  border-radius: 5rem !important;
+  padding: 0.25rem 0.5rem 0.25rem 0.35rem !important;
+  color: #40354e !important;
+  border: solid 2px #e8e8ec !important;
+}
+
+.circle-button-xsm:hover {
+  border-radius: 5rem !important;
+  padding: 0.25rem 0.5rem 0.25rem 0.35rem !important;
+  color: #40354e !important;
+  border: solid 2px #e8e8ec !important;
+}
+
+.image {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 100%;
+}
+.image img {
+  position: absolute;
 }
