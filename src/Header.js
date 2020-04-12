@@ -35,7 +35,14 @@ const Header = () => {
         expand="lg"
         style={{ paddingTop: "1rem" }}
       >
-        <Navbar.Brand href="#home">Lazga</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <img
+            src={
+              "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/assets/images/logo.png"
+            }
+            style={{ width: "10rem", height: "10rem", padding: "0" }}
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Form inline className="mx-auto">
