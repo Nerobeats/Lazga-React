@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Modal, Button } from "react-bootstrap";
+import { Navbar, Nav, Modal, Button, Form } from "react-bootstrap";
 
 const HeaderTop = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -26,33 +26,149 @@ const HeaderTop = () => {
       </Navbar>
 
       <Modal show={showLogin} onHide={handleLoginClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Header closeButton style={{ borderBottom: "hidden" }}>
+          <Modal.Title>
+            {" "}
+            <img
+              src={
+                "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
+              }
+              style={{
+                width: "5rem",
+                height: "7rem",
+                padding: "0rem 0rem 1rem 0rem",
+              }}
+            />
+            <h3>Log In</h3>
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleLoginClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleLoginClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Username or Email"
+                style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              />
+            </Form.Group>
+            <div
+              className="row"
+              style={{
+                justifyContent: "center",
+                paddingTop: "5rem",
+                paddingBottom: "5rem",
+              }}
+            >
+              <Button
+                variant="primary"
+                type="submit"
+                style={{
+                  paddingRight: "10rem",
+                  paddingLeft: "10rem",
+                  borderRadius: "50rem",
+                }}
+              >
+                Submit
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
       </Modal>
 
       <Modal show={showSignup} onHide={handleSignupClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Header closeButton style={{ borderBottom: "hidden" }}>
+          <Modal.Title>
+            {" "}
+            <img
+              src={
+                "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
+              }
+              style={{
+                width: "5rem",
+                height: "7rem",
+                padding: "0rem 0rem 1rem 0rem",
+              }}
+            />
+            <h3>Sign Up</h3>
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleSignupClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSignupClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="e.g. lazgarocks"
+                style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="You email address"
+                style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your last name"
+                style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your last name"
+                style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Choose a password"
+                style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              />
+            </Form.Group>
+            <div
+              className="row"
+              style={{
+                justifyContent: "center",
+                paddingTop: "2rem",
+                paddingBottom: "2rem",
+              }}
+            >
+              <Button
+                variant="primary"
+                type="submit"
+                style={{
+                  paddingRight: "10rem",
+                  paddingLeft: "10rem",
+                  borderRadius: "50rem",
+                }}
+              >
+                Submit
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
       </Modal>
     </div>
   );

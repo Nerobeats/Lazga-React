@@ -193,8 +193,58 @@ div.scrollmenu:hover {
   transform: translateX(-50%) translateY(-50%);
 }
 
+.img-wrapper {
+  display: inline-block;
+  overflow: hidden;
+
+  border: 1px solid gray;
+}
+
+.img-wrapper img {
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.img-wrapper img:hover {
+  -webkit-transform: scale(1.9);
+  -moz-transform: scale(1.9);
+  -ms-transform: scale(1.9);
+  -o-transform: scale(1.9);
+  transform: scale(1.9);
+  transform-origin: right bottom;
+  transform: scale(1.9);
+  transition-delay: 0.3s;
+}
+
+/* Like Heart */
+
+.heart {
+  width: 100px;
+  height: 100px;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png")
+    no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s;
+}
+.heart.is-active {
+  transition-duration: 1s;
+  background-position: -2800px 0;
+}
+
+.stage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .favorite-item {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0px;
+  right: 0px;
 }
