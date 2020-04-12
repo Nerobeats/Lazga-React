@@ -103,13 +103,33 @@ a:-webkit-any-link:hover {
 /* Shop Page Styles */
 
 .category-buttons {
-  justify-content: space-between;
-  padding-right: 10rem;
+  justify-content: space-evenly;
+}
+
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 0px;
+  text-decoration: none;
+  background-color: white;
+}
+
+div.scrollmenu:active {
+  background-color: white;
+}
+
+div.scrollmenu:hover {
+  background-color: white;
 }
 
 .home-list {
-  justify-content: space-between;
-  padding-right: 10rem;
+  justify-content: center !important;
 }
 
 .btn-categories {
@@ -144,6 +164,21 @@ a:-webkit-any-link:hover {
   border: solid 2px #e8e8ec !important;
 }
 
+.fav-button-xsm {
+  border-radius: 5rem !important;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem !important;
+  color: #40354e !important;
+  border: hidden !important;
+  background-color: white !important;
+}
+
+.fav-button-xsm:hover {
+  border-radius: 5rem !important;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem !important;
+  color: #40354e !important;
+  border: hidden !important;
+}
+
 .image {
   position: relative;
   overflow: hidden;
@@ -151,4 +186,15 @@ a:-webkit-any-link:hover {
 }
 .image img {
   position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.favorite-item {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

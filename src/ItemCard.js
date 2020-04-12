@@ -1,7 +1,8 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const ItemCard = () => {
   return (
@@ -9,14 +10,27 @@ const ItemCard = () => {
       <div class="image">
         <img
           src={
-            "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
+            "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/stock-image.jpg"
           }
           class="img img-responsive full-width"
         />
+        <small className="favorite-item">
+          {" "}
+          <Button variant="outline-light shadow" className="fav-button-xsm ">
+            <FontAwesomeIcon
+              icon={faHeart}
+              size="1x"
+              style={{ color: "#40354e" }}
+            />
+          </Button>
+        </small>
       </div>
       <Card.Body>
         <Card.Footer
-          style={{ backgroundColor: "transparent", border: "hidden" }}
+          style={{
+            backgroundColor: "transparent",
+            border: "hidden",
+          }}
         >
           <div className="row">Insert Title Here</div>
           <div className="row">

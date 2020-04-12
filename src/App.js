@@ -23,7 +23,7 @@ const App = () => {
       </div>
 
       <div className="container-flex">
-        <div className="row ml-5 mr-5">
+        <div className="row ml-3 mr-5">
           <div className="col-lg-2 mb-2 mt-5 ">Sidebar Goes Here</div>
 
           <div className="col-lg-10 mb-5 mt-5">
