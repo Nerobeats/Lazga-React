@@ -6,6 +6,7 @@ import HeaderMiddle from "./Headers/HeaderMiddle";
 
 import CategoryButtons from "./Body/CategoryButtons";
 import Home from "./Body/Home";
+import ItemDetail from "./Body/ItemDetail";
 
 import SideNav from "./SideNav/SideNav";
 
@@ -26,7 +27,7 @@ const App = () => {
         <HeaderBottom />
       </div>
 
-      <div className="container-flex">
+      {/* <div className="container-flex">
         <div className="row ml-3 mr-5">
           <div className="col-lg-2 mb-2 mt-5 ">
             <SideNav />
@@ -37,6 +38,10 @@ const App = () => {
             <Home />
           </div>
         </div>
+      </div> */}
+
+      <div className="container-flex">
+        <ItemDetail />
       </div>
     </div>
   );

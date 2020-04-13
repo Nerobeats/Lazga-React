@@ -27,9 +27,8 @@ const Home = ({ products, setTshirts }) => {
   // run function when component mounts
   useEffect(() => {
     fetchTshirts();
-  }, []);
+  });
 
-  let rows = [];
   if (!loading) {
     let i,
       j,
@@ -40,7 +39,7 @@ const Home = ({ products, setTshirts }) => {
     for (i = 0, j = products.tshirts.length; i < j; i += cols) {
       temparray = products.tshirts.slice(i, i + cols);
       rows.push(
-        <div className="row mb-3 ">
+        <div key={i} className="row mb-3 ">
           <ListRow rowProducts={temparray} />
         </div>
       );

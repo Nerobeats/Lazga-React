@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const ItemCard = ({ item }) => {
   const [heart, setHeart] = useState(false);
@@ -13,9 +12,13 @@ const ItemCard = ({ item }) => {
       style={{ marginLeft: "0.5rem", marginRight: "0.5rem" }}
       className="img-wrapper"
     >
-      <div class="image">
+      <div className="image">
         {" "}
-        <img src={item.image_url} class="img img-responsive full-width" />
+        <img
+          src={item.image_url}
+          className="img img-responsive full-width"
+          alt="shirt_img"
+        />
       </div>
       <small className="favorite-item">
         <div

@@ -26,7 +26,6 @@ export const login = (userData, history) => async (dispatch) => {
     const res = await instance.post("/login/", userData);
 
     const token = res.data.access;
-    console.log(token);
     dispatch(setCurrentUser(token));
   } catch (error) {
     // console.log("HERE");

@@ -37,6 +37,7 @@ const HeaderMiddle = () => {
             height: "3.5rem",
             padding: "0rem 0rem 0rem 0rem",
           }}
+          alt="logo-name"
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

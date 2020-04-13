@@ -3,7 +3,7 @@ import { Navbar, Nav, Modal, Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { login, resetErrors, signup, logout } from "../../redux/actions";
 
-const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
+const HeaderTop = ({ login, history, user, logout, signup }) => {
   // Modal Handling
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
@@ -21,9 +21,23 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmitLogin = (e) => {
     e.preventDefault();
     login({ username: username, password: password }, history);
+  };
+
+  const handleSubmitSignup = (e) => {
+    e.preventDefault();
+    signup(
+      {
+        username: username,
+        password: password,
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+      },
+      history
+    );
   };
 
   useEffect(() => {
@@ -65,6 +79,7 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
               src={
                 "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
               }
+              alt="img"
               style={{
                 width: "5rem",
                 height: "7rem",
@@ -75,8 +90,8 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={(e) => handleSubmit(e)}>
-            <Form.Group controlId="formBasicEmail">
+          <Form onSubmit={(e) => handleSubmitLogin(e)}>
+            <Form.Group controlId="formBasicUsername1">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
@@ -87,7 +102,7 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formBasicPassword1">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -129,6 +144,7 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
               src={
                 "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
               }
+              alt="logo"
               style={{
                 width: "5rem",
                 height: "7rem",
@@ -139,17 +155,17 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
+          <Form onSubmit={(e) => handleSubmitSignup(e)}>
+            <Form.Group controlId="formBasicUsername2">
               <Form.Label>Username</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="e.g. lazgarocks"
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="formBasicEmail2">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -159,7 +175,7 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formBasicFirstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
@@ -169,7 +185,7 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formBasicLastName">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
@@ -179,7 +195,7 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formBasicPassword2">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -204,10 +220,6 @@ const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
                   paddingLeft: "10rem",
                   borderRadius: "50rem",
                 }}
-                // onClick={signup(
-                //   { username: username, password: password },
-                //   history
-                // )}
               >
                 Submit
               </Button>
