@@ -12,7 +12,7 @@ import SideNav from "./SideNav/SideNav";
 
 const App = () => {
   return (
-    <div className="container-fluid ">
+    <div className="container-fluid">
       <div className="row ">
         <div className="col col-12 header-col">
           <HeaderTop />
@@ -27,7 +27,7 @@ const App = () => {
         <HeaderBottom />
       </div>
 
-      {/* <div className="container-flex">
+      <div className="container-flex">
         <div className="row ml-3 mr-5">
           <div className="col-lg-2 mb-2 mt-5 ">
             <SideNav />
@@ -38,11 +38,9 @@ const App = () => {
             <Home />
           </div>
         </div>
-      </div> */}
-
-      <div className="container-flex">
-        <ItemDetail />
       </div>
+
+      {/* <ItemDetail /> */}
     </div>
   );
 };

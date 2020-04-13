@@ -267,7 +267,6 @@ div.scrollmenu:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
   padding: 0rem 0rem 1rem 0rem !important;
 }
 
@@ -277,4 +276,31 @@ div.scrollmenu:hover {
 
 .card-body {
   padding: 0rem 0rem 0rem 0rem;
+}
+
+/* Detail Page */
+.img-detail-lg {
+  width: 100%;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+.detail-buy {
+  height: 950px;
+  border-radius: 0.5rem !important;
+  border-color: white !important;
+  width: 95%;
+}
+
+.detail-buy-fixed {
+  height: 950px;
+  border-radius: 0.5rem !important;
+  border-color: white !important;
+  width: 55% !important;
+  position: fixed !important;
+  top: 500 !important;
+}
+
+.detail-container {
+  background: black !important;
 }
