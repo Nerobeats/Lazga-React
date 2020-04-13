@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Modal, Button, Form } from "react-bootstrap";
 
+/*
+ *
+ * Maybe move the login/signup buttons and their modals into separate components.
+ *
+ */
 const HeaderTop = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
