@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Modal, Button, Form } from "react-bootstrap";
 
+/*
+ *
+ * Maybe move the login/signup buttons and their modals into separate components.
+ *
+ */
 const HeaderTop = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
+  // maybe remove these handlers, since theyre all used only once
   const handleLoginClose = () => setShowLogin(false);
   const handleLoginShow = () => setShowLogin(true);
 
@@ -28,7 +34,6 @@ const HeaderTop = () => {
       <Modal show={showLogin} onHide={handleLoginClose}>
         <Modal.Header closeButton style={{ borderBottom: "hidden" }}>
           <Modal.Title>
-            {" "}
             <img
               src={
                 "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"
@@ -88,7 +93,6 @@ const HeaderTop = () => {
       <Modal show={showSignup} onHide={handleSignupClose}>
         <Modal.Header closeButton style={{ borderBottom: "hidden" }}>
           <Modal.Title>
-            {" "}
             <img
               src={
                 "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo.png"

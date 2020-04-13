@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardDeck } from "react-bootstrap";
+import { CardDeck } from "react-bootstrap";
 import ItemCard from "./ItemCard";
 
 const ListRow = () => {
