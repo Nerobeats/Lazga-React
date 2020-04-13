@@ -292,15 +292,12 @@ div.scrollmenu:hover {
   width: 95%;
 }
 
-.detail-buy-fixed {
-  height: 950px;
-  border-radius: 0.5rem !important;
-  border-color: white !important;
-  width: 55% !important;
-  position: fixed !important;
-  top: 500 !important;
-}
-
 .detail-container {
   background: black !important;
+}
+
+.fixed-buy {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
 }

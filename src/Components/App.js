@@ -39,8 +39,8 @@ const App = () => {
           </div>
         </div>
       </div>
-
-      {/* <ItemDetail /> */}
+      {/* 
+      <ItemDetail /> */}
     </div>
   );
 };
