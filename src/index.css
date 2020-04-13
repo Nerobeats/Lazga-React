@@ -186,10 +186,10 @@ div.scrollmenu:hover {
 }
 .image img {
   position: absolute;
-  max-width: 100%;
+  max-width: 120%;
   max-height: 100%;
   top: 50%;
-  left: 50%;
+  left: 42%;
   transform: translateX(-50%) translateY(-50%);
 }
 
@@ -222,9 +222,9 @@ div.scrollmenu:hover {
 /* Like Heart */
 
 .heart {
-  width: 100px;
-  height: 100px;
-  background: url("https://cssanimation.rocks/images/posts/steps/heart.png")
+  width: 50px;
+  height: 50px;
+  background: url("https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/heart-animation.png")
     no-repeat;
   background-position: 0 0;
   cursor: pointer;
@@ -233,7 +233,7 @@ div.scrollmenu:hover {
 }
 .heart.is-active {
   transition-duration: 1s;
-  background-position: -2800px 0;
+  background-position: -1400px 0;
 }
 
 .stage {
@@ -247,4 +247,34 @@ div.scrollmenu:hover {
   position: absolute;
   top: 0px;
   right: 0px;
+}
+
+/* Item Description */
+
+.bottom-right {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.name-field {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  padding: 0rem 0rem 1rem 0rem !important;
+}
+
+.name-row {
+  padding: 0rem 0rem 2rem 0rem;
+}
+
+.card-body {
+  padding: 0rem 0rem 0rem 0rem;
 }

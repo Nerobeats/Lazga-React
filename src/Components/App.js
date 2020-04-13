@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import HeaderTop from "./HeaderTop";
-import HeaderMiddle from "./HeaderMiddle";
-import HeaderBottom from "./HeaderBottom";
-import CategoryButtons from "./CategoryButtons";
-import SideNav from "./SideNav";
-import Home from "./Home";
+import React from "react";
+
+import HeaderTop from "./Headers/HeaderTop";
+import HeaderBottom from "./Headers/HeaderBottom";
+import HeaderMiddle from "./Headers/HeaderMiddle";
+
+import CategoryButtons from "./Body/CategoryButtons";
+import Home from "./Body/Home";
+
+import SideNav from "./SideNav/SideNav";
 
 const App = () => {
   return (

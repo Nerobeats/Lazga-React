@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Modal, Button, Form } from "react-bootstrap";
+import { connect } from "react-redux";
+import { login, resetErrors, signup, logout } from "../../redux/actions";
 
-const HeaderTop = () => {
+const HeaderTop = ({ login, history, errors, resetErrors, user, logout }) => {
+  // Modal Handling
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -10,6 +13,29 @@ const HeaderTop = () => {
 
   const handleSignupClose = () => setShowSignup(false);
   const handleSignupShow = () => setShowSignup(true);
+
+  // User Handling
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login({ username: username, password: password }, history);
+  };
+
+  useEffect(() => {
+    setShowLogin(false);
+    setUsername("");
+    setPassword("");
+  }, [user]);
+
+  useEffect(() => {
+    setUsername("");
+    setPassword("");
+  }, [showLogin]);
 
   return (
     <div>
@@ -20,8 +46,14 @@ const HeaderTop = () => {
         style={{ textAlign: "right" }}
       >
         <Nav className="ml-auto">
-          <Nav.Link onClick={handleLoginShow}>Login</Nav.Link>
-          <Nav.Link onClick={handleSignupShow}>Signup</Nav.Link>
+          {!user ? (
+            <>
+              <Nav.Link onClick={handleLoginShow}>Login</Nav.Link>
+              <Nav.Link onClick={handleSignupShow}>Signup</Nav.Link>
+            </>
+          ) : (
+            <Nav.Link onClick={logout}>Logout</Nav.Link>
+          )}
         </Nav>
       </Navbar>
 
@@ -43,13 +75,15 @@ const HeaderTop = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="Username or Email"
+                type="text"
+                placeholder=""
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
 
@@ -57,16 +91,18 @@ const HeaderTop = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder=""
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
             <div
               className="row"
               style={{
                 justifyContent: "center",
-                paddingTop: "5rem",
-                paddingBottom: "5rem",
+                paddingTop: "3rem",
+                paddingBottom: "3rem",
               }}
             >
               <Button
@@ -110,6 +146,7 @@ const HeaderTop = () => {
                 type="email"
                 placeholder="e.g. lazgarocks"
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
@@ -118,6 +155,7 @@ const HeaderTop = () => {
                 type="email"
                 placeholder="You email address"
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
 
@@ -127,6 +165,7 @@ const HeaderTop = () => {
                 type="text"
                 placeholder="Enter your last name"
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </Form.Group>
 
@@ -136,6 +175,7 @@ const HeaderTop = () => {
                 type="text"
                 placeholder="Enter your last name"
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
 
@@ -145,6 +185,7 @@ const HeaderTop = () => {
                 type="password"
                 placeholder="Choose a password"
                 style={{ padding: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
             <div
@@ -163,6 +204,10 @@ const HeaderTop = () => {
                   paddingLeft: "10rem",
                   borderRadius: "50rem",
                 }}
+                // onClick={signup(
+                //   { username: username, password: password },
+                //   history
+                // )}
               >
                 Submit
               </Button>
@@ -174,4 +219,20 @@ const HeaderTop = () => {
   );
 };
 
-export default HeaderTop;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (userData, history) => dispatch(login(userData, history)),
+    signup: (userData, history) => dispatch(signup(userData, history)),
+    logout: () => dispatch(logout()),
+    resetErrors: () => dispatch(resetErrors()),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    errors: state.errorsState.errors,
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderTop);
