@@ -7,5 +7,8 @@ export const SET_ERRORS = "SET_ERRORS";
 // Fetching
 export const FETCH_TSHIRTS = "FETCH_TSHIRTS";
 
-//SETTING
+// SETTING
 export const SET_TSHIRTS = "SET_TSHIRTS";
+
+// CART
+export const ADD_TO_CART = "ADD_TO_CART";

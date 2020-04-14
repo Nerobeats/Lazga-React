@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import {
   Navbar,
   InputGroup,
@@ -7,6 +9,7 @@ import {
   Nav,
   Button,
 } from "react-bootstrap";
+import { Badge } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -14,7 +17,7 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
-const HeaderMiddle = () => {
+const HeaderMiddle = ({ cart }) => {
   return (
     <Navbar
       variant="light"
@@ -70,8 +73,11 @@ const HeaderMiddle = () => {
           <Button variant="outline-light" className="circle-button-sm">
             <FontAwesomeIcon icon={faHeart} size="2x" swapOpacity />
           </Button>
+
           <Button variant="outline-light" className="circle-button-sm">
-            <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+            <Badge badgeContent={cart.length} color="primary">
+              <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+            </Badge>
           </Button>
         </Nav>
       </Navbar.Collapse>
@@ -79,4 +85,10 @@ const HeaderMiddle = () => {
   );
 };
 
-export default HeaderMiddle;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
+export default connect(mapStateToProps, null)(HeaderMiddle);

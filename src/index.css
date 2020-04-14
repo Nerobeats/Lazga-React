@@ -236,6 +236,21 @@ div.scrollmenu:hover {
   background-position: -1400px 0;
 }
 
+.heart-lg.is-active {
+  width: 100px;
+  height: 100px;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png")
+    no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s;
+}
+.heart-lg.is-active {
+  transition-duration: 1s;
+  background-position: -2800px 0;
+}
+
 .stage {
   position: fixed;
   top: 50%;
@@ -290,7 +305,7 @@ div.scrollmenu:hover {
   border-radius: 0.5rem !important;
   border-color: white !important;
   width: 95%;
-  padding: 5rem 3rem 2rem 2rem;
+  padding: 5rem 3rem 2rem 3rem;
   display: block !important;
 }
 
@@ -301,7 +316,7 @@ div.scrollmenu:hover {
   border-top-right-radius: 0rem !important;
   border-color: white !important;
   width: 95%;
-  padding: 5rem 3rem 2rem 2rem;
+  padding: 5rem 3rem 2rem 3rem;
   display: block !important;
 }
 
@@ -315,4 +330,46 @@ div.scrollmenu:hover {
   right: 0 !important;
   border-top-left-radius: 0rem !important;
   border-top-right-radius: 0rem !important;
+}
+
+/* Add To Cart Modal */
+
+.color-picker {
+  border: 0;
+  display: flex;
+  text-align: left !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25) !important;
+  background-color: #e8e8ec !important;
+  border-color: #e8e8ec !important;
+  border-radius: 1000px;
+  padding: 0.5rem 1rem 0.5rem 1rem !important;
+  z-index: 1;
+  border-radius: 5rem !important;
+  height: 2.5rem;
+  width: 9rem;
+  cursor: pointer;
+}
+
+.color-circle {
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 50%;
+  position: relative !important;
+  top: -3px;
+  left: -10px;
+}
+
+.color-text {
+  font-size: 14px;
+  position: relative !important;
+  top: -29px;
+  left: 25px;
+  color: #40354e;
+  text-align: right !important;
+}
+
+.MuiPopover-paper {
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 1rem !important;
+  max-width: 25rem !important;
 }
