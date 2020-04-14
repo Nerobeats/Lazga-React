@@ -290,6 +290,19 @@ div.scrollmenu:hover {
   border-radius: 0.5rem !important;
   border-color: white !important;
   width: 95%;
+  padding: 5rem 3rem 2rem 2rem;
+  display: block !important;
+}
+
+.detail-buy-fixed {
+  height: 950px;
+  border-radius: 0.5rem !important;
+  border-top-left-radius: 0rem !important;
+  border-top-right-radius: 0rem !important;
+  border-color: white !important;
+  width: 95%;
+  padding: 5rem 3rem 2rem 2rem;
+  display: block !important;
 }
 
 .detail-container {
@@ -300,4 +313,6 @@ div.scrollmenu:hover {
   position: fixed !important;
   top: 0 !important;
   right: 0 !important;
+  border-top-left-radius: 0rem !important;
+  border-top-right-radius: 0rem !important;
 }

@@ -9,7 +9,7 @@ const instance = axios.create({
   baseURL: "http://lazga-api.herokuapp.com",
 });
 
-const Home = ({ products, setTshirts }) => {
+const Shop = ({ products, setTshirts }) => {
   const [loading, setLoading] = useState(true);
 
   // function to fetch tshirts from API
@@ -27,7 +27,7 @@ const Home = ({ products, setTshirts }) => {
   // run function when component mounts
   useEffect(() => {
     fetchTshirts();
-  });
+  }, []);
 
   if (!loading) {
     let i,
@@ -66,4 +66,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

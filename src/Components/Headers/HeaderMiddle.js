@@ -23,7 +23,7 @@ const HeaderMiddle = () => {
       style={{ padding: "1vh 7vw 1vh 7vw" }}
     >
       <Navbar.Brand
-        href="#home"
+        href="/shop" // change to home later
         style={{
           padding: "0rem 0rem 0rem 0rem",
         }}
