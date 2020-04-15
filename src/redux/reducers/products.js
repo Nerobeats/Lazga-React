@@ -1,5 +1,10 @@
 import { SET_TSHIRTS } from "../actions/actionTypes";
 
+/**
+ * ?
+ * Why is this whole reducer only about tshirts?
+ */
+
 const initialState = {
   tshirts: null,
 };

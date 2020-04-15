@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * These categories should be coming from the backend
+ */
 const categories = [
   "Sports",
   "Movies",

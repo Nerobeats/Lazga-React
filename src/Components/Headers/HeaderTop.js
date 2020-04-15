@@ -71,6 +71,7 @@ const HeaderTop = ({ login, history, user, logout, signup }) => {
         </Nav>
       </Navbar>
 
+      {/* Move these modals into their own components */}
       <Modal show={showLogin} onHide={handleLoginClose}>
         <Modal.Header closeButton style={{ borderBottom: "hidden" }}>
           <Modal.Title>

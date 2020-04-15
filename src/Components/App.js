@@ -29,6 +29,7 @@ const App = () => {
       </div>
       <Switch>
         <Route path="/shop/">
+          {/* If you have to do this, then this thing needs to be its own component */}
           <div className="container-flex">
             <div className="row ml-3 mr-5">
               <div className="col-lg-2 mb-2 mt-5 ">

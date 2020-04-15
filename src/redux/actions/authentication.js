@@ -28,6 +28,9 @@ export const login = (userData, history) => async (dispatch) => {
     const token = res.data.access;
     dispatch(setCurrentUser(token));
   } catch (error) {
+    /**
+     * Zombie code - resurrect or neutralize
+     */
     // console.log("HERE");
     // console.log(error);
     // dispatch({

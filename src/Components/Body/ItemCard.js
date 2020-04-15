@@ -10,6 +10,10 @@ import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
 import colorsOptions from "../../colors";
 
+/**
+ * This component is doing waaaaaaaaaaaaay too much
+ */
+
 const ItemCard = ({ item, addToCart }) => {
   const [heart, setHeart] = useState(false);
   const [modalShow, setModalShow] = useState(false);
@@ -130,6 +134,7 @@ const ItemCard = ({ item, addToCart }) => {
         </Card.Body>
       </Card>
 
+      {/* own component */}
       <Modal
         show={modalShow}
         size="lg"
