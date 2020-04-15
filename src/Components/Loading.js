@@ -4,6 +4,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Loading = () => (
   <div className="mx-auto text-center">
+    {/* :/ */}
     <br />
     <br />
     <br />

@@ -14,6 +14,11 @@ const Shop = ({ products, setTshirts }) => {
 
   // function to fetch tshirts from API
   async function fetchTshirts() {
+    /*
+     * THIS SHOULD BE IN A REDUX ACTION
+     *
+     * You can dispatch this WAAAAAY earlier
+     */
     try {
       const res = await instance.get("/list/");
       const tshirts = res.data;
@@ -30,6 +35,9 @@ const Shop = ({ products, setTshirts }) => {
   }, []);
 
   if (!loading) {
+    /**
+     * Why do you need to do this? :/
+     */
     let i,
       j,
       temparray,
