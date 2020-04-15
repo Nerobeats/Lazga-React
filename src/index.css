@@ -8,6 +8,10 @@ body {
   color: #40354e;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -35,22 +39,42 @@ code {
 }
 
 .search-bar {
-  border-radius: 5rem;
+  border-radius: 0.5rem !important;
+  background-color: #e8e8ec;
+  border: 1px solid #e8e8ec;
+  /* margin: 0rem 10rem 0rem 10rem; */
 }
 
 .circle-button-sm {
   border-radius: 5rem !important;
-  padding: 0.75rem 0.75rem 0.75rem 0.75rem !important;
+  padding: 1rem 0.75rem 1rem 0.75rem !important;
   color: #40354e !important;
   border: hidden !important;
 }
 
+/* remove this */
 .btn-outline-light {
   background-color: inherit !important;
   border-style: hidden !important;
 }
 
 .btn-outline-light:hover {
+  background-color: inherit !important;
+  border-style: hidden !important;
+  background-color: #e8e8ec !important;
+}
+/*  */
+
+.MuiButton-outlined {
+  background-color: inherit !important;
+  border-style: hidden !important;
+}
+
+.MuiButton-outlined:focus {
+  outline-style: none;
+}
+
+.MuiButton-outlined:hover {
   background-color: inherit !important;
   border-style: hidden !important;
   background-color: #e8e8ec !important;
@@ -153,15 +177,16 @@ div.scrollmenu:hover {
 .circle-button-xsm {
   border-radius: 5rem !important;
   padding: 0.25rem 0.5rem 0.25rem 0.35rem !important;
+  background-color: white !important;
   color: #40354e !important;
-  border: solid 2px #e8e8ec !important;
+  border: hidden !important;
 }
 
 .circle-button-xsm:hover {
   border-radius: 5rem !important;
   padding: 0.25rem 0.5rem 0.25rem 0.35rem !important;
   color: #40354e !important;
-  border: solid 2px #e8e8ec !important;
+  background-color: #e8e8ec !important;
 }
 
 .fav-button-xsm {
@@ -182,14 +207,14 @@ div.scrollmenu:hover {
 .image {
   position: relative;
   overflow: hidden;
-  padding-bottom: 100%;
+  padding-bottom: 80%;
 }
 .image img {
   position: absolute;
-  max-width: 120%;
+  max-width: 100%;
   max-height: 100%;
-  top: 50%;
-  left: 42%;
+  top: 42%;
+  left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
 
@@ -219,38 +244,6 @@ div.scrollmenu:hover {
   transition-delay: 0.3s;
 }
 
-/* Like Heart */
-
-.heart {
-  width: 50px;
-  height: 50px;
-  background: url("https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/heart-animation.png")
-    no-repeat;
-  background-position: 0 0;
-  cursor: pointer;
-  transition: background-position 1s steps(28);
-  transition-duration: 0s;
-}
-.heart.is-active {
-  transition-duration: 1s;
-  background-position: -1400px 0;
-}
-
-.heart-lg.is-active {
-  width: 100px;
-  height: 100px;
-  background: url("https://cssanimation.rocks/images/posts/steps/heart.png")
-    no-repeat;
-  background-position: 0 0;
-  cursor: pointer;
-  transition: background-position 1s steps(28);
-  transition-duration: 0s;
-}
-.heart-lg.is-active {
-  transition-duration: 1s;
-  background-position: -2800px 0;
-}
-
 .stage {
   position: fixed;
   top: 50%;
@@ -266,17 +259,17 @@ div.scrollmenu:hover {
 
 /* Item Description */
 
-.bottom-right {
-  position: absolute;
+/* .bottom-right {
+  position: absolute !important;
   bottom: 0.5rem;
   right: 0.5rem;
 }
 
 .bottom-left {
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-}
+  bottom: 1;
+  left: 1;
+} */
 
 .name-field {
   overflow: hidden;
@@ -300,39 +293,25 @@ div.scrollmenu:hover {
   border-radius: 0.5rem;
 }
 
-.detail-buy {
-  height: 950px;
-  border-radius: 0.5rem !important;
-  border-color: white !important;
-  width: 95%;
-  padding: 5rem 3rem 2rem 3rem;
-  display: block !important;
-}
-
-.detail-buy-fixed {
-  height: 950px;
-  border-radius: 0.5rem !important;
-  border-top-left-radius: 0rem !important;
-  border-top-right-radius: 0rem !important;
-  border-color: white !important;
-  width: 95%;
-  padding: 5rem 3rem 2rem 3rem;
-  display: block !important;
-}
-
 .detail-container {
   background: black !important;
 }
 
-.fixed-buy {
+.fixed {
   position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
+  top: -1rem !important;
+  right: 0.5rem !important;
+  width: 100%;
+
   border-top-left-radius: 0rem !important;
   border-top-right-radius: 0rem !important;
 }
 
 /* Add To Cart Modal */
+
+.MuiButton-containedPrimary {
+  border-style: hidden !important;
+}
 
 .color-picker {
   border: 0;

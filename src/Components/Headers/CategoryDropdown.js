@@ -1,26 +1,53 @@
-import React, { useState } from "react";
-import { NavDropdown } from "react-bootstrap";
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const CategoryDropdown = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  function handleClick(event) {
+    if (anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget);
+    }
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
+  const categories = [
+    "category 1",
+    "category 2",
+    "category 3",
+    "category 4",
+    "category 5",
+  ];
+  const menuItems = categories.map((category) => (
+    <MenuItem onClick={handleClick}>{category}</MenuItem>
+  ));
 
   return (
-    <NavDropdown
-      title="Category"
-      id="basic-nav-dropdown"
-      style={{ padding: "0vw 3vw 0vw 3vw" }}
-      onMouseEnter={handleOpen}
-      onMouseLeave={handleClose}
-      show={open}
-    >
-      <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-      <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-      <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-      <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-      <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-    </NavDropdown>
+    <div>
+      <Button
+        aria-owns={anchorEl ? "simple-menu" : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
+        onMouseOver={handleClick}
+        style={{ margin: "0rem 2rem 0rem 2rem" }}
+      >
+        Category
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
+      >
+        {menuItems}
+      </Menu>
+    </div>
   );
 };
 
