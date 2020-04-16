@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/detail/:itemID">
           <ItemDetail />
         </Route>
-        <Redirect exact from="/" to="/home" />
+        <Redirect exact from="/" to="/shop" />
       </Switch>
     </div>
   );
