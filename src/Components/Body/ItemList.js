@@ -4,42 +4,26 @@ import Loading from "../Loading";
 import { connect } from "react-redux";
 
 const ItemList = ({ products }) => {
-  const [loading, setLoading] = useState(true);
-  const didMountRef = useRef(false);
+  let i,
+    j,
+    temparray,
+    cols = 5,
+    rows = [];
 
-  useEffect(() => {
-    if (didMountRef.current) {
-      setLoading(false);
-    } else {
-      didMountRef.current = true;
-    }
-  });
-
-  if (!loading) {
-    let i,
-      j,
-      temparray,
-      cols = 5,
-      rows = [];
-
-    for (i = 0, j = products.length; i < j; i += cols) {
-      temparray = products.slice(i, i + cols);
-      rows.push(
-        <div key={i} className="row mb-3 ">
-          <ListRow rowProducts={temparray} />
-        </div>
-      );
-    }
-    return (
-      <div className="row mb-3 home-list">
-        <div className="container-flex ">{rows}</div>
+  for (i = 0, j = products.length; i < j; i += cols) {
+    temparray = products.slice(i, i + cols);
+    rows.push(
+      <div key={i} className="row mb-3 ">
+        <ListRow rowProducts={temparray} />
       </div>
     );
-  } else {
-    return <Loading />;
   }
+  return (
+    <div className="row mb-3 home-list">
+      <div className="container-flex ">{rows}</div>
+    </div>
+  );
 };
-
 const mapStateToProps = (state) => {
   return {
     products: state.products,
