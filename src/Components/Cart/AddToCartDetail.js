@@ -2,24 +2,25 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/actions";
 
+import { Modal } from "react-bootstrap";
 import SizeButtons from "./SizeButtons";
 import ColorButtons from "./ColorButtons";
+import SizeChart from "./SizeChart";
 
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Paper from "@material-ui/core/Paper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartPlus,
-  faRulerHorizontal,
-} from "@fortawesome/free-solid-svg-icons";
+import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons";
 
 export const AddToCartDetail = ({ item, addToCart, id }) => {
-  const [heart, setHeart] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const [size, setSize] = useState(1);
   const [color, setColor] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -32,6 +33,7 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
           padding: "1rem 1rem 1rem 1rem",
         }}
         className="fixed-right"
+        elevation={5}
       >
         <h4>{item.name}</h4>
         <h5 style={{ padding: "2rem 0rem 2rem 0rem" }}>{item.itemPrice} JOD</h5>
@@ -41,7 +43,6 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
             setAnchorEl={setAnchorEl}
             size={size}
             setSize={setSize}
-            id={id}
           />
         </ButtonGroup>
         <br></br>
@@ -65,7 +66,7 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
           }}
           onClick={() => addToCart({ item, color, size })}
         >
-          <FontAwesomeIcon icon={faCartPlus} size="1x" />
+          <AddShoppingCartIcon />
           <text style={{ padding: "0.25rem 1rem 0.25rem 1rem" }}>
             Add to cart
           </text>
@@ -80,7 +81,12 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
           }}
         >
           {" "}
-          <h6 style={{ margin: "0rem 0rem 0rem 0rem" }}>
+          <h6
+            style={{ margin: "0rem 0rem 0rem 0rem" }}
+            onClick={() => {
+              setModalShow(true);
+            }}
+          >
             {" "}
             <FontAwesomeIcon
               icon={faRulerHorizontal}
@@ -113,6 +119,15 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
           <text style={{ opacity: "0.75", fontSize: "14px" }}>1 to 3 days</text>
         </div>
       </Paper>
+      <Modal
+        show={modalShow}
+        size="lg"
+        style={{ textAlign: "center" }}
+        onHide={() => setModalShow(false)}
+        aria-labelledby="contained-modal-title-vcenter"
+      >
+        <SizeChart />
+      </Modal>
     </div>
   );
 };

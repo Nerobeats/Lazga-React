@@ -7,12 +7,9 @@ import { Modal } from "react-bootstrap";
 
 import ColorButtons from "./ColorButtons";
 import SizeButtons from "./SizeButtons";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const AddToCartModal = ({ item, addToCart, id }) => {
-  const [heart, setHeart] = useState(false);
   const [size, setSize] = useState(1);
   const [color, setColor] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -68,7 +65,7 @@ const AddToCartModal = ({ item, addToCart, id }) => {
                   }}
                   onClick={() => addToCart({ item, color, size })}
                 >
-                  <FontAwesomeIcon icon={faCartPlus} size="1x" />
+                  <AddShoppingCartIcon />
                   <text style={{ padding: "0.25rem 1rem 0.25rem 1rem" }}>
                     Add to cart
                   </text>

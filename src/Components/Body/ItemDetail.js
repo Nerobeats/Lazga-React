@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import AddToCartDetail from "../Cart/AddToCartDetail";
@@ -27,7 +28,12 @@ const ItemDetail = () => {
       <Grid item xs={2}></Grid>
       <Grid item xs={7} style={{ padding: "1rem 0.5rem 1rem 1rem" }}>
         <Paper
-          style={{ backgroundColor: "#e8e8ec", padding: "0rem 0rem 0rem 0rem" }}
+          style={{
+            backgroundColor: "#e8e8ec",
+            padding: "0rem 0rem 0rem 0rem",
+            borderRadius: "1rem",
+          }}
+          elevation={5}
         >
           <img src={imageUrlResized} className="img-detail-lg" />{" "}
         </Paper>

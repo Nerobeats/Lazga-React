@@ -18,7 +18,6 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 const ItemCard = ({ item, addToCart }) => {
   const [liked, setLiked] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleLikeButton = () => setLiked(!liked);
 
@@ -30,19 +29,21 @@ const ItemCard = ({ item, addToCart }) => {
     }
   };
 
-  const open = Boolean(anchorEl);
+  const open = Boolean(false);
   const id = open ? "simple-popover" : undefined;
 
   return (
     <div>
       <Card style={{ maxWidth: "15rem", margin: "1rem 1rem 1rem 1rem" }} raised>
         <Link to={{ pathname: `/detail/${item.id}`, state: { item: item } }}>
-          <CardMedia
-            className=" img "
-            component="img"
-            src={item.image_url}
-            title={item.name}
-          />
+          <div className="img-wrapper">
+            <CardMedia
+              className="img"
+              component="img"
+              src={item.image_url}
+              title={item.name}
+            />
+          </div>
         </Link>
 
         <CardContent

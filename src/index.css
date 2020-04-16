@@ -42,12 +42,12 @@ code {
   border-radius: 0.5rem !important;
   background-color: #e8e8ec;
   border: 1px solid #e8e8ec;
-  /* margin: 0rem 10rem 0rem 10rem; */
+  margin: 0rem 3rem 0rem 3rem;
 }
 
 .circle-button-sm {
   border-radius: 5rem !important;
-  padding: 1rem 0.75rem 1rem 0.75rem !important;
+  padding: 0.75rem 0.75rem 0.75rem 0.75rem !important;
   color: #40354e !important;
   border: hidden !important;
 }
@@ -234,13 +234,12 @@ div.scrollmenu:hover {
 }
 
 .img-wrapper img:hover {
-  -webkit-transform: scale(1.9);
-  -moz-transform: scale(1.9);
-  -ms-transform: scale(1.9);
-  -o-transform: scale(1.9);
-  transform: scale(1.9);
-  transform-origin: right bottom;
-  transform: scale(1.9);
+  -webkit-transform: scale(2.2);
+  -moz-transform: scale(2.2);
+  -ms-transform: scale(2.2);
+  -o-transform: scale(2.2);
+  transform: scale(2.2);
+  transform: scale(2.2);
   transition-delay: 0.3s;
 }
 

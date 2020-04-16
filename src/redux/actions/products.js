@@ -1,6 +1,15 @@
-import { SET_TSHIRTS } from "./actionTypes";
+import { FETCH_PRODUCTS } from "./actionTypes";
+import instance from "./instance";
 
-export const setTshirts = (tshirts) => ({
-  type: SET_TSHIRTS,
-  payload: tshirts,
-});
+export const fetchTshirts = () => async (dispatch) => {
+  try {
+    const res = await instance.get("/list/");
+    const products = res.data;
+    dispatch({
+      type: FETCH_PRODUCTS,
+      payload: products,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};

@@ -1,16 +1,11 @@
-import { SET_TSHIRTS } from "../actions/actionTypes";
+import { FETCH_PRODUCTS } from "../actions/actionTypes";
 
-const initialState = {
-  tshirts: null,
-};
+const initialState = [];
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_TSHIRTS:
-      return {
-        ...state,
-        tshirts: action.payload,
-      };
+    case FETCH_PRODUCTS:
+      return action.payload;
     default:
       return state;
   }

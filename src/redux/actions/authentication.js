@@ -28,12 +28,7 @@ export const login = (userData, history) => async (dispatch) => {
     const token = res.data.access;
     dispatch(setCurrentUser(token));
   } catch (error) {
-    // console.log("HERE");
-    // console.log(error);
-    // dispatch({
-    //   type: SET_ERRORS,
-    //   payload: error.response.data,
-    // });
+    console.error(error);
   }
 };
 

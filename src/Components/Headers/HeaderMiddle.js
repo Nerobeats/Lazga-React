@@ -6,6 +6,8 @@ import { Navbar, Nav } from "react-bootstrap";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Favorite from "@material-ui/icons/Favorite";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -40,12 +42,14 @@ const HeaderMiddle = ({ cart }) => {
         <SearchBar />
         <Nav>
           <Button variant="outlined" className="circle-button-sm">
-            <FontAwesomeIcon icon={faHeart} size="2x" swapOpacity />
+            <Badge badgeContent={cart.length} color="primary">
+              <Favorite style={{ fontSize: 40 }} />
+            </Badge>
           </Button>
 
           <Button variant="outlined" className="circle-button-sm">
             <Badge badgeContent={cart.length} color="primary">
-              <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+              <ShoppingCartIcon style={{ fontSize: 40 }} />
             </Badge>
           </Button>
         </Nav>

@@ -1,5 +1,8 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
+// Temporary mock categories until the categories are implemented in the back-end
 const categories = [
   "Sports",
   "Movies",
@@ -9,21 +12,19 @@ const categories = [
   "Sports",
   "Movies",
   "Superheroes",
-  "Sports",
-  "Movies",
-  "Superheroes",
-  "Anime",
-  "Video Games",
 ];
 
 const CategoryButtons = () => {
   const categoryButtons = categories.map((category, index) => (
-    <button
+    <Button
       key={index}
-      className="btn btn-outline-secondary mr-1 ml-1 mt-1 mb-1"
+      variant="contained"
+      style={{
+        margin: "1rem 1rem 1rem 1rem",
+      }}
     >
       {category}
-    </button>
+    </Button>
   ));
   return (
     <div className="row mb-3  category-buttons">
