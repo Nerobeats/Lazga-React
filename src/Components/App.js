@@ -1,6 +1,8 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
+import Grid from "@material-ui/core/Grid";
+
 import HeaderTop from "./Headers/HeaderTop";
 import HeaderBottom from "./Headers/HeaderBottom";
 import HeaderMiddle from "./Headers/HeaderMiddle";
@@ -10,18 +12,19 @@ import ItemDetail from "./Body/ItemDetail";
 
 const App = () => {
   return (
-    <div className="container-fluid">
-      <div className="row ">
-        <div className="col col-12 header-col">
-          <HeaderTop />
-        </div>
-      </div>
-      <div className="col col-12 header-col">
+    <Grid container>
+      <Grid item xs={12} className="header-col">
+        <HeaderTop />
+      </Grid>
+
+      <Grid item xs={12} className="header-col">
         <HeaderMiddle />
-      </div>
-      <div className="col col-12 header-col">
+      </Grid>
+
+      <Grid item xs={12} className="header-col">
         <HeaderBottom />
-      </div>
+      </Grid>
+
       <Switch>
         <Route path="/shop/">
           <Shop />
@@ -31,7 +34,7 @@ const App = () => {
         </Route>
         <Redirect exact from="/" to="/shop" />
       </Switch>
-    </div>
+    </Grid>
   );
 };
 

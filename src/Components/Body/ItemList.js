@@ -22,7 +22,7 @@ const ItemList = ({ products }) => {
     );
   }
 
-  return <Grid alignContent="center">{rows}</Grid>;
+  return <Grid style={{}}>{rows}</Grid>;
 };
 const mapStateToProps = (state) => {
   return {
