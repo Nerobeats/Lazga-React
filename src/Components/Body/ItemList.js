@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import ListRow from "./ListRow";
-import Loading from "../Loading";
+import ItemCard from "./ItemCard";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+
 import { connect } from "react-redux";
 
 const ItemList = ({ products }) => {
   let i,
     j,
     temparray,
-    cols = 5,
+    cols = products.length,
     rows = [];
 
   for (i = 0, j = products.length; i < j; i += cols) {
@@ -18,11 +21,8 @@ const ItemList = ({ products }) => {
       </div>
     );
   }
-  return (
-    <div className="row mb-3 home-list">
-      <div className="container-flex ">{rows}</div>
-    </div>
-  );
+
+  return <Grid alignContent="center">{rows}</Grid>;
 };
 const mapStateToProps = (state) => {
   return {
