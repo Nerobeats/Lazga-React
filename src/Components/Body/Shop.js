@@ -1,5 +1,4 @@
 import React from "react";
-import CategoryButtons from "../Body/CategoryButtons";
 import ItemList from "../Body/ItemList";
 import SideNav from "../SideNav/SideNav";
 
@@ -11,7 +10,6 @@ const Shop = () => {
           <SideNav />
         </div>
         <div className="col-lg-10 mb-5 mt-5">
-          <CategoryButtons />
           <ItemList />
         </div>
       </div>

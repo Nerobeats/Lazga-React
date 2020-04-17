@@ -10,7 +10,7 @@ const ItemDetail = () => {
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
-      const scrollCheck = window.scrollY < 185;
+      const scrollCheck = window.scrollY < 190;
       if (scrollCheck !== scroll) {
         setScroll(scrollCheck);
       }
@@ -26,7 +26,7 @@ const ItemDetail = () => {
   return (
     <Grid container spacing={0} style={{ backgroundColor: "#e8e8ec" }}>
       <Grid item xs={2}></Grid>
-      <Grid item xs={7} style={{ padding: "1rem 0.5rem 1rem 1rem" }}>
+      <Grid item xs={7} style={{ padding: "1rem 1rem 1rem 0rem" }}>
         <Paper
           style={{
             backgroundColor: "#e8e8ec",

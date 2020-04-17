@@ -1,52 +1,90 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
 
 const CategoryDropdown = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
-  function handleClick(event) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
     }
-  }
 
-  function handleClose() {
-    setAnchorEl(null);
-  }
+    setOpen(false);
+  };
 
-  const categories = [
-    "category 1",
-    "category 2",
-    "category 3",
-    "category 4",
-    "category 5",
-  ];
-  const menuItems = categories.map((category) => (
-    <MenuItem onClick={handleClick}>{category}</MenuItem>
-  ));
+  const handleListKeyDown = (event) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  };
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   return (
-    <div>
-      <Button
-        aria-owns={anchorEl ? "simple-menu" : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-        onMouseOver={handleClick}
-        style={{ margin: "0rem 2rem 0rem 2rem" }}
-      >
-        Category
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        MenuListProps={{ onMouseLeave: handleClose }}
-      >
-        {menuItems}
-      </Menu>
+    <div style={{ zIndex: "1", padding: "0rem 2rem 0rem 2rem" }}>
+      <div>
+        <Button
+          ref={anchorRef}
+          aria-controls={open ? "menu-list-grow" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+          // onMouseEnter={handleToggle}
+          // onMouseLeave={handleClose}
+        >
+          Category
+        </Button>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom" ? "center top" : "center bottom",
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={handleClose}>category 1</MenuItem>
+                    <MenuItem onClick={handleClose}>category 2</MenuItem>
+                    <MenuItem onClick={handleClose}>category 3</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
     </div>
   );
 };

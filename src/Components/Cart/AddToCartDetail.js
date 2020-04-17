@@ -6,6 +6,7 @@ import { Modal } from "react-bootstrap";
 import SizeButtons from "./SizeButtons";
 import ColorButtons from "./ColorButtons";
 import SizeChart from "./SizeChart";
+import QuantityInput from "./QuantityInput";
 
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -19,6 +20,7 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
   const [modalShow, setModalShow] = useState(false);
   const [size, setSize] = useState(1);
   const [color, setColor] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClose = () => {
@@ -46,6 +48,8 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
           />
         </ButtonGroup>
         <br></br>
+        <QuantityInput quantity={quantity} setQuantity={setQuantity} />
+        <br></br>
         <br></br>
         <ColorButtons
           anchorEl={anchorEl}
@@ -64,7 +68,7 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
             padding: "0.5rem 1rem 0.5rem 1rem",
             borderRadius: "50rem",
           }}
-          onClick={() => addToCart({ item, color, size })}
+          onClick={() => addToCart({ item, color, size, quantity })}
         >
           <AddShoppingCartIcon />
           <text style={{ padding: "0.25rem 1rem 0.25rem 1rem" }}>

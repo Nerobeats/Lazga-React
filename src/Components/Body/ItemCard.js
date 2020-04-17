@@ -45,7 +45,6 @@ const ItemCard = ({ item, addToCart }) => {
             />
           </div>
         </Link>
-
         <CardContent
           style={{ paddingBottom: "0.5rem", paddingRight: "0.5rem" }}
         >
@@ -56,6 +55,7 @@ const ItemCard = ({ item, addToCart }) => {
             <Grid item xs={6}>
               <div className="name-field"> {item.itemPrice} JOD</div>
             </Grid>
+
             <Grid item xs={3} style={{ textAlign: "right" }}>
               <Fab
                 size="small"

@@ -1,33 +1,69 @@
-import React from "react";
-import ListRow from "./ListRow";
+import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-
+import { CardDeck } from "react-bootstrap";
 import { connect } from "react-redux";
+import Paginator from "../HelperComponents/Paginator";
+import { setProducts } from "../../redux/actions";
 
-const ItemList = ({ products }) => {
-  let i,
-    j,
-    temparray,
-    cols = products.length,
-    rows = [];
+const ItemList = ({ products, filterProducts }) => {
+  const pageLimit = 30;
 
-  for (i = 0, j = products.length; i < j; i += cols) {
-    temparray = products.slice(i, i + cols);
-    rows.push(
-      <div key={i} className="row mb-3 ">
-        <ListRow rowProducts={temparray} />
-      </div>
-    );
-  }
+  const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState([]);
+  const [currentData, setCurrentData] = useState([]);
 
-  return <Grid style={{}}>{rows}</Grid>;
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  };
+
+  useEffect(() => {
+    setProducts(products);
+    setData(filterProducts);
+  }, [filterProducts]);
+
+  useEffect(() => {
+    if (filterProducts) {
+      setCurrentData(filterProducts.slice(offset, offset + pageLimit));
+      scrollToTop();
+    }
+  }, [offset, filterProducts, data]);
+
+  const rows = currentData.map((item, index) => (
+    <div>
+      {" "}
+      <ItemCard key={index} item={item} />
+    </div>
+  ));
+
+  return (
+    <div>
+      <CardDeck>{rows}</CardDeck>
+      <Paginator
+        totalRecords={data.length}
+        pageLimit={pageLimit}
+        pageNeighbours={1}
+        setOffset={setOffset}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </div>
+  );
 };
 const mapStateToProps = (state) => {
   return {
     products: state.products,
+    filterProducts: state.filterProducts,
   };
 };
 
-export default connect(mapStateToProps, null)(ItemList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProducts: (products) => dispatch(setProducts(products)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemList);

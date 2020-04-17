@@ -20,6 +20,7 @@ const ColorButtons = ({
     setColor(index + 1);
     setAnchorEl(false);
   };
+
   let colorArray = Object.keys(colorsOptions);
   const colorButtons = Object.keys(colorsOptions).map((key, index) => (
     <Button

@@ -1,7 +1,11 @@
-import { FETCH_PRODUCTS } from "./actionTypes";
+import {
+  FETCH_PRODUCTS,
+  FILTER_PRODUCT_TYPE,
+  SET_PRODUCTS,
+} from "./actionTypes";
 import instance from "./instance";
 
-export const fetchTshirts = () => async (dispatch) => {
+export const fetchProducts = () => async (dispatch) => {
   try {
     let stored_products = JSON.parse(localStorage.getItem("products"));
     if (stored_products) {
@@ -21,4 +25,22 @@ export const fetchTshirts = () => async (dispatch) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const filterProducts = (products, type) => {
+  if (type === "all") {
+    return { type: FILTER_PRODUCT_TYPE, payload: products };
+  }
+  let filteredProduct = products.filter((product) => product.type === type);
+  return {
+    type: FILTER_PRODUCT_TYPE,
+    payload: filteredProduct,
+  };
+};
+
+export const setProducts = (products) => {
+  return {
+    type: SET_PRODUCTS,
+    payload: products,
+  };
 };
