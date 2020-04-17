@@ -1,19 +1,18 @@
 import React from "react";
 import ItemList from "../Body/ItemList";
 import SideNav from "../SideNav/SideNav";
+import Grid from "@material-ui/core/Grid";
 
 const Shop = () => {
   return (
-    <div className="container-flex">
-      <div className="row ml-3 mr-5">
-        <div className="col-lg-2 mb-2 mt-5 ">
-          <SideNav />
-        </div>
-        <div className="col-lg-10 mb-5 mt-5">
-          <ItemList />
-        </div>
-      </div>
-    </div>
+    <Grid container style={{ minHeight: "2160px" }}>
+      <Grid xs={2} style={{ marginTop: "0rem" }}>
+        <SideNav />
+      </Grid>
+      <Grid xs={2}>
+        <ItemList />
+      </Grid>
+    </Grid>
   );
 };
 

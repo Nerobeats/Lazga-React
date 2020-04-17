@@ -5,9 +5,7 @@ import { connect } from "react-redux";
 import { setProducts } from "../redux/actions";
 import Grid from "@material-ui/core/Grid";
 
-import HeaderTop from "./Headers/HeaderTop";
-import HeaderBottom from "./Headers/HeaderBottom";
-import HeaderMiddle from "./Headers/HeaderMiddle";
+import Header from "./Headers/Header";
 import Footer from "./Footer/Footer";
 import Shop from "./Body/Shop";
 
@@ -20,17 +18,7 @@ const App = ({ products, setProducts }) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} className="header-col">
-        <HeaderTop />
-      </Grid>
-
-      <Grid item xs={12} className="header-col">
-        <HeaderMiddle />
-      </Grid>
-
-      <Grid item xs={12} className="header-col">
-        <HeaderBottom />
-      </Grid>
+      <Header />
 
       <Switch>
         <Route path="/shop/">

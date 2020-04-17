@@ -1,12 +1,14 @@
 import React from "react";
-import { Accordion, Card, Button } from "react-bootstrap";
-import {
-  FormControlLabel,
-  RadioGroup,
-  FormLabel,
-  FormControl,
-  Radio,
-} from "@material-ui/core";
+
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Radio from "@material-ui/core/Radio";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const SideNav = () => {
   const [value1, setValue1] = React.useState("female");
@@ -21,83 +23,78 @@ const SideNav = () => {
 
   return (
     <div>
-      <Accordion defaultActiveKey="0">
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              Click me!
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Gender</FormLabel>
-                <RadioGroup
-                  aria-label="gender"
-                  name="gender1"
-                  value={value1}
-                  onChange={handleChangeFirst}
-                >
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="Female"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="Male"
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio />}
-                    label="Other"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-      <Accordion defaultActiveKey="1">
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="1">
-              Click me!
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>
-              {" "}
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Gender</FormLabel>
-                <RadioGroup
-                  aria-label="gender"
-                  name="gender1"
-                  value={value2}
-                  onChange={handleChangeSecond}
-                >
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="Female"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="Male"
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio />}
-                    label="Other"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
+      <ExpansionPanel defaultExpanded>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          Expansion Panel 1
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Gender</FormLabel>
+            <RadioGroup
+              aria-label="gender"
+              name="gender1"
+              value={value1}
+              onChange={handleChangeFirst}
+            >
+              <FormControlLabel
+                value="female1"
+                control={<Radio />}
+                label="Female1"
+              />
+              <FormControlLabel
+                value="male1"
+                control={<Radio />}
+                label="Male1"
+              />
+              <FormControlLabel
+                value="other1"
+                control={<Radio />}
+                label="Other1"
+              />
+            </RadioGroup>
+          </FormControl>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel defaultExpanded>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          Expansion Panel 2
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Gender</FormLabel>
+            <RadioGroup
+              aria-label="gender2"
+              name="gender2"
+              value={value2}
+              onChange={handleChangeSecond}
+            >
+              <FormControlLabel
+                value="female2"
+                control={<Radio />}
+                label="Female2"
+              />
+              <FormControlLabel
+                value="male2"
+                control={<Radio />}
+                label="Male2"
+              />
+              <FormControlLabel
+                value="other2"
+                control={<Radio />}
+                label="Other2"
+              />
+            </RadioGroup>
+          </FormControl>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </div>
   );
 };

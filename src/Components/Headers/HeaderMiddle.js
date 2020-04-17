@@ -14,12 +14,7 @@ const HeaderMiddle = ({ cart }) => {
   cart.map((item) => (cartSize += item.quantity));
 
   return (
-    <Navbar
-      variant="light"
-      bg="header-bottom"
-      expand="lg"
-      style={{ padding: "1vh 7vw 1vh 7vw" }}
-    >
+    <Navbar variant="light" bg="header-bottom" expand="lg">
       <Navbar.Brand
         href="/shop" // change to home later
         style={{

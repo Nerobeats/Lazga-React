@@ -4,8 +4,13 @@ import CategoryButtons from "./CategoryButtons";
 
 const HeaderBottom = () => {
   return (
-    <div className="container-flex categories">
-      <Navbar variant="light" bg="header-bottom" expand="lg">
+    <div className="container-flex categories ">
+      <Navbar
+        variant="light"
+        bg="header-bottom"
+        expand="lg"
+        style={{ justifyContent: "flex-end" }}
+      >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
