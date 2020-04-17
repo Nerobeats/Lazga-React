@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import reducer from "./reducers";
 
 // Actions
-import { checkForExpiredToken, fetchProducts } from "./actions";
+import { checkForExpiredToken, fetchProducts, fetchTypes } from "./actions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -12,5 +12,6 @@ const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 store.dispatch(checkForExpiredToken());
 store.dispatch(fetchProducts());
+store.dispatch(fetchTypes());
 
 export default store;

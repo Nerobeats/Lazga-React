@@ -9,7 +9,7 @@ const Shop = () => {
       <Grid xs={2} style={{ marginTop: "0rem" }}>
         <SideNav />
       </Grid>
-      <Grid xs={2}>
+      <Grid xs={10}>
         <ItemList />
       </Grid>
     </Grid>

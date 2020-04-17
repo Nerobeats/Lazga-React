@@ -6,6 +6,7 @@ export const SET_ERRORS = "SET_ERRORS";
 
 // Fetching
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+export const FETCH_TYPES = "FETCH_TYPES";
 
 // Filtering
 export const FILTER_PRODUCT_TYPE = "FILTER_PRODUCT_TYPE";
