@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
+import Paginator from "../HelperComponents/Paginator";
 import { CardDeck } from "react-bootstrap";
 import { connect } from "react-redux";
-import Paginator from "../HelperComponents/Paginator";
 import { setProducts } from "../../redux/actions";
 
 const ItemList = ({ products, filterProducts }) => {
@@ -23,7 +23,7 @@ const ItemList = ({ products, filterProducts }) => {
   useEffect(() => {
     setProducts(products);
     setData(filterProducts);
-  }, [filterProducts]);
+  }, [products, filterProducts]);
 
   useEffect(() => {
     if (filterProducts) {
@@ -41,7 +41,7 @@ const ItemList = ({ products, filterProducts }) => {
 
   return (
     <div>
-      <CardDeck>{rows}</CardDeck>
+      <CardDeck style={{ paddingLeft: "2rem" }}>{rows}</CardDeck>
       <Paginator
         totalRecords={data.length}
         pageLimit={pageLimit}

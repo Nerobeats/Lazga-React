@@ -1,3 +1,5 @@
+// This component is to deal with the problem of pagination
+
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { number, string, func, oneOfType, node } from "prop-types";
 import Button from "@material-ui/core/Button";

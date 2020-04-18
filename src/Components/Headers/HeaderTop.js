@@ -7,13 +7,12 @@ import Login from "../Authentication/Login";
 import Signup from "../Authentication/Signup";
 
 const HeaderTop = ({ user, logout, resetErrors }) => {
-  // Modal Handling
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
   useEffect(() => {
     resetErrors();
-  }, [showLogin, showSignup]);
+  }, [showLogin, showSignup, resetErrors]);
 
   useEffect(() => {
     setShowLogin(false);

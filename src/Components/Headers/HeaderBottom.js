@@ -4,7 +4,7 @@ import CategoryButtons from "./CategoryButtons";
 
 const HeaderBottom = () => {
   return (
-    <div className="container-flex categories ">
+    <div className="container-flex categories" style={{ paddingLeft: "2rem" }}>
       <Navbar
         variant="light"
         bg="header-bottom"

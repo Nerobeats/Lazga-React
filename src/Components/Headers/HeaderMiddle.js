@@ -1,11 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-
 import { Navbar, Nav } from "react-bootstrap";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
-
 import Favorite from "@material-ui/icons/Favorite";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
@@ -43,11 +42,13 @@ const HeaderMiddle = ({ cart }) => {
             </Badge>
           </Button>
 
-          <Button variant="outlined" className="circle-button-sm">
-            <Badge badgeContent={cartSize} color="primary">
-              <ShoppingCartIcon style={{ fontSize: 40 }} />
-            </Badge>
-          </Button>
+          <Link to={{ pathname: `/cart` }}>
+            <Button variant="outlined" className="circle-button-sm">
+              <Badge badgeContent={cartSize} color="primary">
+                <ShoppingCartIcon style={{ fontSize: 40 }} />
+              </Badge>
+            </Button>
+          </Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

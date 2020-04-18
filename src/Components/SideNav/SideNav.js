@@ -1,5 +1,4 @@
 import React from "react";
-
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormLabel from "@material-ui/core/FormLabel";
@@ -8,17 +7,14 @@ import Radio from "@material-ui/core/Radio";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const SideNav = () => {
   const [value1, setValue1] = React.useState("female");
-  const [value2, setValue2] = React.useState("female");
 
   const handleChangeFirst = (event) => {
     setValue1(event.target.value);
-  };
-  const handleChangeSecond = (event) => {
-    setValue2(event.target.value);
   };
 
   return (
@@ -54,42 +50,6 @@ const SideNav = () => {
                 value="other1"
                 control={<Radio />}
                 label="Other1"
-              />
-            </RadioGroup>
-          </FormControl>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel defaultExpanded>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          Expansion Panel 2
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup
-              aria-label="gender2"
-              name="gender2"
-              value={value2}
-              onChange={handleChangeSecond}
-            >
-              <FormControlLabel
-                value="female2"
-                control={<Radio />}
-                label="Female2"
-              />
-              <FormControlLabel
-                value="male2"
-                control={<Radio />}
-                label="Male2"
-              />
-              <FormControlLabel
-                value="other2"
-                control={<Radio />}
-                label="Other2"
               />
             </RadioGroup>
           </FormControl>

@@ -7,11 +7,11 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 
 const Footer = () => {
   return (
-    <footer class="site-footer">
+    <footer className="site-footer">
       <Grid container>
-        <Grid xs={4} style={{ margin: "0rem 15rem 0rem 6rem" }}>
+        <Grid item xs={4} style={{ margin: "0rem 15rem 0rem 6rem" }}>
           <h6>About</h6>
-          <p class="text-justify">
+          <p className="text-justify">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -21,42 +21,42 @@ const Footer = () => {
           </p>
         </Grid>
 
-        <Grid xs={1} style={{ margin: "0rem 2rem 0rem 2rem" }}>
+        <Grid item xs={1} style={{ margin: "0rem 2rem 0rem 2rem" }}>
           <h6>Shop</h6>
-          <ul class="footer-links">
+          <ul className="footer-links">
             <li>
-              <a href="">Login</a>
+              <a href="#">Login</a>
             </li>
             <li>
-              <a href="">Signup</a>
+              <a href="#">Signup</a>
             </li>
             <li>
-              <a href="">Bulk orders</a>
+              <a href="#">Bulk orders</a>
             </li>
           </ul>
         </Grid>
 
-        <Grid xs={1} style={{ margin: "0rem 2rem 0rem 2rem" }}>
+        <Grid item xs={1} style={{ margin: "0rem 2rem 0rem 2rem" }}>
           <h6>Help</h6>
-          <ul class="footer-links">
+          <ul className="footer-links">
             <li>
-              <a href="">Delivery</a>
+              <a href="#">Delivery</a>
             </li>
             <li>
-              <a href="">Returns</a>
+              <a href="#">Returns</a>
             </li>
             <li>
-              <a href="">Copyright</a>
+              <a href="#">Copyright</a>
             </li>
             <li>
-              <a href="">Contact Us</a>
+              <a href="#">Contact Us</a>
             </li>
           </ul>
         </Grid>
 
-        <Grid xs={1} style={{ margin: "0rem 2rem 0rem 2rem" }}>
+        <Grid item xs={1} style={{ margin: "0rem 2rem 0rem 2rem" }}>
           <h6>Social</h6>
-          <ul class="footer-links">
+          <ul className="footer-links">
             <li>
               <a href="https://www.facebook.com/Lazga.prints/">
                 <FacebookIcon /> Facebook
@@ -68,12 +68,12 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="#">
                 <TwitterIcon /> Twitter
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="#">
                 <WhatsAppIcon /> WhatsApp
               </a>
             </li>
@@ -81,8 +81,8 @@ const Footer = () => {
         </Grid>
 
         <Grid container>
-          <Grid xs={12} style={{ textAlign: "center", marginTop: "1rem" }}>
-            <p class="copyright-text">
+          <Grid item xs={12} style={{ textAlign: "center", marginTop: "1rem" }}>
+            <p className="copyright-text">
               Copyright &copy; 2017 All Rights Reserved by
               <a href="#"> Lazga</a>.
             </p>

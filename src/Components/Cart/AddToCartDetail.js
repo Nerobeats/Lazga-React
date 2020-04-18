@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/actions";
-
 import { Modal } from "react-bootstrap";
 import SizeButtons from "./SizeButtons";
 import ColorButtons from "./ColorButtons";
 import SizeChart from "./SizeChart";
 import QuantityInput from "./QuantityInput";
-
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Paper from "@material-ui/core/Paper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

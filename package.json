@@ -21,6 +21,7 @@
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.4.0",
+    "react-graceful-image": "^1.2.12",
     "react-numeric-input": "^2.2.3",
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",

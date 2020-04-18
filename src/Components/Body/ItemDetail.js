@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Modal } from "react-bootstrap";
+import AddToCartDetail from "../Cart/AddToCartDetail";
+import Image from "react-graceful-image";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import AddToCartDetail from "../Cart/AddToCartDetail";
 
 const ItemDetail = () => {
   const [scroll, setScroll] = useState(true);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  };
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
-      const scrollCheck = window.scrollY < 190;
+      const scrollCheck = window.scrollY < 240;
       if (scrollCheck !== scroll) {
         setScroll(scrollCheck);
       }
     });
   });
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const item = useLocation().state.item;
   const imageUrlResized =
@@ -35,7 +45,13 @@ const ItemDetail = () => {
           }}
           elevation={5}
         >
-          <img src={imageUrlResized} className="img-detail-lg" />{" "}
+          <Image
+            src={imageUrlResized}
+            width="1056"
+            height="891"
+            alt="large image"
+            className="img-detail-lg"
+          />
         </Paper>
         <Grid item xs={12}>
           abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>

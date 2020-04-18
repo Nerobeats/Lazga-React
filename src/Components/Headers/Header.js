@@ -1,9 +1,7 @@
 import React from "react";
-
 import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 import HeaderMiddle from "./HeaderMiddle";
-
 import Grid from "@material-ui/core/Grid";
 
 const Header = () => {

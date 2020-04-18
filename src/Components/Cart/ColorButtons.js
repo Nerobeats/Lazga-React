@@ -24,7 +24,7 @@ const ColorButtons = ({
   let colorArray = Object.keys(colorsOptions);
   const colorButtons = Object.keys(colorsOptions).map((key, index) => (
     <Button
-      variant={color == index + 1 ? "dark" : "outline-dark "}
+      variant={color === index + 1 ? "dark" : "outline-dark "}
       onClick={() => handleColorSwitch(index)}
       data-toggle="tooltip"
       data-placement="top"

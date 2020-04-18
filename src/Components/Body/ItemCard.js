@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
-
 import AddToCartModal from "../Cart/AddToCartModal";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-
+import Image from "react-graceful-image";
 import { Modal } from "react-bootstrap";
 import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
@@ -22,7 +20,7 @@ const ItemCard = ({ item, addToCart }) => {
   const handleLikeButton = () => setLiked(!liked);
 
   const handleSubmit = (item) => {
-    if (item.type === "tshirt") {
+    if (item.type === 2) {
       setModalShow(true);
     } else {
       addToCart(item);
@@ -37,11 +35,11 @@ const ItemCard = ({ item, addToCart }) => {
       <Card style={{ maxWidth: "15rem", margin: "1rem 1rem 1rem 1rem" }} raised>
         <Link to={{ pathname: `/detail/${item.id}`, state: { item: item } }}>
           <div className="img-wrapper">
-            <CardMedia
-              className="img"
-              component="img"
+            <Image
               src={item.image_url}
-              title={item.name}
+              width="240"
+              height="200"
+              alt="My awesome image"
             />
           </div>
         </Link>

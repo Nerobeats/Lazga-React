@@ -1,16 +1,32 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { setProducts } from "../../redux/actions";
 
-const SearchBar = () => {
+const SearchBar = ({ products, setProducts }) => {
+  const [query, setQuery] = useState("");
+
+  const filterItems = () => {
+    return products.filter((item) => {
+      return `${item.tags} ${item.description}`.toLowerCase().includes(query);
+    });
+  };
+
+  useEffect(() => {
+    const filteredItems = filterItems();
+    setProducts(filteredItems);
+  }, [query]);
+
+  console.log(filterItems());
+  console.log(query);
   return (
     <FormControl variant="outlined" fullWidth>
       <OutlinedInput
+        onChange={(event) => setQuery(event.target.value)}
         className="search-bar"
         variant="outlined"
         id="search-bar"
@@ -25,4 +41,16 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProducts: (products) => dispatch(setProducts(products)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
