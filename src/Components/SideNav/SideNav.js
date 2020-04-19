@@ -11,7 +11,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const SideNav = () => {
-  const [value1, setValue1] = React.useState("female");
+  const [value1, setValue1] = React.useState("all");
 
   const handleChangeFirst = (event) => {
     setValue1(event.target.value);
@@ -25,31 +25,42 @@ const SideNav = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          Expansion Panel 1
+          Themes
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <FormControl component="fieldset">
-            <FormLabel component="legend">Gender</FormLabel>
+            {/* <FormLabel component="legend">Themes</FormLabel> */}
             <RadioGroup
-              aria-label="gender"
-              name="gender1"
+              aria-label="themes"
+              name="themes"
               value={value1}
               onChange={handleChangeFirst}
             >
+              <FormControlLabel value="all" control={<Radio />} label="All" />
               <FormControlLabel
-                value="female1"
+                value="videogames"
                 control={<Radio />}
-                label="Female1"
+                label="Video Games"
               />
               <FormControlLabel
-                value="male1"
+                value="movies"
                 control={<Radio />}
-                label="Male1"
+                label="Movies"
               />
               <FormControlLabel
-                value="other1"
+                value="tvshow"
                 control={<Radio />}
-                label="Other1"
+                label="TV Shows"
+              />
+              <FormControlLabel
+                value="calligraphy"
+                control={<Radio />}
+                label="Calligraphy"
+              />
+              <FormControlLabel
+                value="anime"
+                control={<Radio />}
+                label="Anime"
               />
             </RadioGroup>
           </FormControl>
