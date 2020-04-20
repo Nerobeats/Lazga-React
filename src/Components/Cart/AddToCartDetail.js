@@ -13,7 +13,7 @@ import Paper from "@material-ui/core/Paper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons";
 
-export const AddToCartDetail = ({ item, addToCart, id }) => {
+export const AddToCartDetail = ({ item, addToCart, id, scroll }) => {
   const [modalShow, setModalShow] = useState(false);
   const [size, setSize] = useState(1);
   const [color, setColor] = useState(1);
@@ -31,7 +31,6 @@ export const AddToCartDetail = ({ item, addToCart, id }) => {
           backgroundColor: "#e8e8ec",
           padding: "1rem 1rem 1rem 1rem",
         }}
-        className="fixed-right"
         elevation={5}
       >
         <h4>{item.name}</h4>

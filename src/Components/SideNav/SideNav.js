@@ -1,24 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { setProducts } from "../../redux/actions";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-
+import SearchBar from "../Headers/SearchBar";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const SideNav = () => {
-  const [value1, setValue1] = React.useState("all");
+const SideNav = ({ products, setProducts }) => {
+  const [value, setValue] = useState("");
 
   const handleChangeFirst = (event) => {
-    setValue1(event.target.value);
+    setValue(event.target.value);
   };
+
+  const filterItems = () => {
+    return products.filter((item) => {
+      return `${item.tags} ${item.description}`.toLowerCase().includes(value);
+    });
+  };
+
+  useEffect(() => {
+    const filteredItems = filterItems();
+    setProducts(filteredItems);
+  }, [value]);
 
   return (
     <div>
+      {" "}
+      <SearchBar />
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -33,24 +47,20 @@ const SideNav = () => {
             <RadioGroup
               aria-label="themes"
               name="themes"
-              value={value1}
+              value={value}
               onChange={handleChangeFirst}
             >
-              <FormControlLabel value="all" control={<Radio />} label="All" />
+              <FormControlLabel value="" control={<Radio />} label="All" />
               <FormControlLabel
-                value="videogames"
+                value="anime"
                 control={<Radio />}
-                label="Video Games"
+                label="Anime"
               />
+
               <FormControlLabel
-                value="movies"
+                value="arabic"
                 control={<Radio />}
-                label="Movies"
-              />
-              <FormControlLabel
-                value="tvshow"
-                control={<Radio />}
-                label="TV Shows"
+                label="Arabic"
               />
               <FormControlLabel
                 value="calligraphy"
@@ -58,9 +68,25 @@ const SideNav = () => {
                 label="Calligraphy"
               />
               <FormControlLabel
-                value="anime"
+                value="movie"
                 control={<Radio />}
-                label="Anime"
+                label="Movies"
+              />
+              <FormControlLabel
+                value="tv"
+                control={<Radio />}
+                label="TV Shows"
+              />
+              <FormControlLabel
+                value="super"
+                control={<Radio />}
+                label="Superheroes"
+              />
+
+              <FormControlLabel
+                value="game"
+                control={<Radio />}
+                label="Video Games"
               />
             </RadioGroup>
           </FormControl>
@@ -70,4 +96,16 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProducts: (products) => dispatch(setProducts(products)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideNav);

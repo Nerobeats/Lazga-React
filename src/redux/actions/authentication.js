@@ -29,6 +29,10 @@ export const login = (userData, history) => async (dispatch) => {
     dispatch(setCurrentUser(token));
   } catch (error) {
     console.error(error);
+    dispatch({
+      type: SET_ERRORS,
+      payload: error.response.data,
+    });
   }
 };
 

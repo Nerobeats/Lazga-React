@@ -43,7 +43,7 @@ code {
   border-radius: 0.5rem !important;
   background-color: #e8e8ec;
   border: 1px solid #e8e8ec;
-  margin: 0rem 3rem 0rem 3rem;
+  margin: 1rem 0rem 0rem 1rem;
 }
 
 .circle-button-sm {
@@ -360,8 +360,9 @@ div.scrollmenu:hover {
 
 .site-footer {
   background-color: #1a1239;
-  position: absolute;
+  position: relative;
   padding: 45px 0 20px;
+  width: 100%;
   font-size: 15px;
   line-height: 24px;
   color: #fff;
@@ -487,4 +488,26 @@ ul {
 }
 .totals {
   margin: 1em;
+}
+
+/* Profile */
+
+.profile-container {
+  justify-content: center;
+  min-height: 2160px;
+  display: inherit;
+  flex: auto;
+  margin: 5rem 10rem 5rem 10rem !important;
+}
+
+.profile-about {
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+/* Snackbar */
+
+.MuiSnackbarContent-root {
+  padding-left: 0rem !important;
+  background-color: #e8e8ec !important;
+  color: #40354e !important;
 }

@@ -1,18 +1,30 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/actions";
-import Button from "@material-ui/core/Button";
 import { Modal } from "react-bootstrap";
 import ColorButtons from "./ColorButtons";
 import SizeButtons from "./SizeButtons";
 import QuantityInput from "./QuantityInput";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import Button from "@material-ui/core/Button";
 
-const AddToCartModal = ({ item, addToCart, id }) => {
+const AddToCartModal = ({
+  item,
+  addToCart,
+  id,
+  setModalShow,
+  setOpenSnackbar,
+}) => {
   const [size, setSize] = useState(1);
   const [color, setColor] = useState(1);
   const [quantity, setQuantity] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const addItem = (item, color, size, quantity) => {
+    addToCart(item, color, size, quantity);
+    setModalShow(false);
+    setOpenSnackbar(true);
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -66,7 +78,7 @@ const AddToCartModal = ({ item, addToCart, id }) => {
                     padding: "0.5rem 1rem 0.5rem 1rem",
                     borderRadius: "50rem",
                   }}
-                  onClick={() => addToCart({ item, color, size, quantity })}
+                  onClick={() => addItem({ item, color, size, quantity })}
                 >
                   <AddShoppingCartIcon />
                   <text style={{ padding: "0rem 1rem 0rem 1rem" }}>
@@ -76,7 +88,7 @@ const AddToCartModal = ({ item, addToCart, id }) => {
               </div>{" "}
             </div>
           </Modal.Body>
-        </div>{" "}
+        </div>
       </div>
     </div>
   );

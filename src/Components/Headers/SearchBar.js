@@ -21,10 +21,12 @@ const SearchBar = ({ products, setProducts }) => {
     setProducts(filteredItems);
   }, [query]);
 
-  console.log(filterItems());
-  console.log(query);
   return (
-    <FormControl variant="outlined" fullWidth>
+    <FormControl
+      variant="outlined"
+      fullWidth
+      style={{ padding: "0rem 0rem 1rem 0rem" }}
+    >
       <OutlinedInput
         onChange={(event) => setQuery(event.target.value)}
         className="search-bar"

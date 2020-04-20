@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { signup, resetErrors } from "../../redux/actions";
 
@@ -13,7 +14,7 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 
-const Signup = ({ signup, history, errors }) => {
+const Signup = ({ signup, history, user, errors }) => {
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -51,93 +52,101 @@ const Signup = ({ signup, history, errors }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        {!!errors.length && (
-          <div className="alert alert-danger" role="alert">
-            {errors.map((error) => (
-              <p key={error}>{error}</p>
-            ))}
-          </div>
-        )}
-        <Grid container spacing={3}>
-          <Grid item xs={6} style={{ paddingTop: "2rem" }}>
-            <FormControl>
-              <TextField
-                label="First Name"
-                id="first-name"
-                value={values.firstName}
-                onChange={handleChange("firstName")}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={6} style={{ paddingTop: "2rem" }}>
-            <FormControl>
-              <TextField
-                label="Last Name"
-                id="last-name"
-                value={values.lastName}
-                onChange={handleChange("lastName")}
-              />
-            </FormControl>
-          </Grid>
+      {user ? (
+        <Redirect to="/shop" />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          {!!errors.length && (
+            <div className="alert alert-danger" role="alert">
+              {errors.map((error) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          )}
+          <Grid container spacing={3}>
+            <Grid item xs={6} style={{ paddingTop: "2rem" }}>
+              <FormControl>
+                <TextField
+                  label="First Name"
+                  id="first-name"
+                  value={values.firstName}
+                  onChange={handleChange("firstName")}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={6} style={{ paddingTop: "2rem" }}>
+              <FormControl>
+                <TextField
+                  label="Last Name"
+                  id="last-name"
+                  value={values.lastName}
+                  onChange={handleChange("lastName")}
+                />
+              </FormControl>
+            </Grid>
 
-          <Grid item xs={12} style={{ paddingTop: "2rem" }}>
-            <FormControl fullWidth>
-              <TextField
-                label="Email"
-                id="email"
-                value={values.email}
-                onChange={handleChange("email")}
-              />
-            </FormControl>
+            <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+              <FormControl fullWidth>
+                <TextField
+                  label="Email"
+                  id="email"
+                  value={values.email}
+                  onChange={handleChange("email")}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+              <FormControl fullWidth>
+                <TextField
+                  label="Username"
+                  id="username"
+                  value={values.username}
+                  onChange={handleChange("username")}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+              <FormControl fullWidth>
+                <InputLabel htmlFor="standard-adornment-password">
+                  Password
+                </InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={values.showPassword ? "text" : "password"}
+                  value={values.password}
+                  onChange={handleChange("password")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} style={{ padding: "2.5rem 0rem 2.5rem 0rem" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={{ borderRadius: "20rem", width: "50%" }}
+                // onClick={(e) => handleSubmit(e)}
+              >
+                Signup
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12} style={{ paddingTop: "2rem" }}>
-            <FormControl fullWidth>
-              <TextField
-                label="Username"
-                id="username"
-                value={values.username}
-                onChange={handleChange("username")}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} style={{ paddingTop: "2rem" }}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="standard-adornment-password">
-                Password
-              </InputLabel>
-              <Input
-                id="standard-adornment-password"
-                type={values.showPassword ? "text" : "password"}
-                value={values.password}
-                onChange={handleChange("password")}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} style={{ padding: "2.5rem 0rem 2.5rem 0rem" }}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{ borderRadius: "20rem", width: "50%" }}
-              // onClick={(e) => handleSubmit(e)}
-            >
-              Signup
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+        </form>
+      )}
     </div>
   );
 };

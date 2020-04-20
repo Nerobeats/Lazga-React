@@ -1,19 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
 import { Navbar, Nav } from "react-bootstrap";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import Favorite from "@material-ui/icons/Favorite";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-const HeaderMiddle = ({ cart }) => {
+const HeaderMiddle = ({ cart, user }) => {
   let cartSize = 0;
   cart.map((item) => (cartSize += item.quantity));
 
   return (
-    <Navbar variant="light" bg="header-bottom" expand="lg">
+    <Navbar
+      variant="light"
+      bg="header-bottom"
+      expand="lg"
+      style={{ padding: "1rem 5rem 0rem 5rem" }}
+    >
       <Navbar.Brand
         href="/shop" // change to home later
         style={{
@@ -33,16 +38,32 @@ const HeaderMiddle = ({ cart }) => {
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <SearchBar />
+      <Navbar.Collapse
+        id="basic-navbar-nav"
+        style={{ justifyContent: "flex-end" }}
+      >
         <Nav>
-          <Button variant="outlined" className="circle-button-sm">
-            <Badge color="primary">
-              <Favorite style={{ fontSize: 40 }} />
-            </Badge>
-          </Button>
-
-          <Link to={{ pathname: `/cart` }}>
+          {user ? (
+            <>
+              <Link to={{ pathname: "/profile" }}>
+                <Button variant="outlined" className="circle-button-sm">
+                  <Badge badgeContent={cartSize} color="primary">
+                    <AccountCircleIcon style={{ fontSize: 40 }} />
+                  </Badge>
+                </Button>
+              </Link>
+              <Link to={{ pathname: "/favorites" }}>
+                <Button variant="outlined" className="circle-button-sm">
+                  <Badge color="primary">
+                    <Favorite style={{ fontSize: 40 }} />
+                  </Badge>
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <></>
+          )}
+          <Link to={{ pathname: "/cart" }}>
             <Button variant="outlined" className="circle-button-sm">
               <Badge badgeContent={cartSize} color="primary">
                 <ShoppingCartIcon style={{ fontSize: 40 }} />
@@ -58,6 +79,7 @@ const HeaderMiddle = ({ cart }) => {
 const mapStateToProps = (state) => {
   return {
     cart: state.cart,
+    user: state.user,
   };
 };
 

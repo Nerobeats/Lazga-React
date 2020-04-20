@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { addToCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import AddToCartModal from "../Cart/AddToCartModal";
+import SnackBar from "../Cart/SnackBar";
 import Image from "react-graceful-image";
 import { Modal } from "react-bootstrap";
 import Card from "@material-ui/core/Card";
@@ -16,8 +17,16 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 const ItemCard = ({ item, addToCart }) => {
   const [liked, setLiked] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleLikeButton = () => setLiked(!liked);
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
 
   const handleSubmit = (item) => {
     if (item.type === 2) {
@@ -87,8 +96,18 @@ const ItemCard = ({ item, addToCart }) => {
         onHide={() => setModalShow(false)}
         aria-labelledby="contained-modal-title-vcenter"
       >
-        <AddToCartModal item={item} id={id} />
+        <AddToCartModal
+          item={item}
+          id={id}
+          setModalShow={setModalShow}
+          setOpenSnackbar={setOpenSnackbar}
+        />
       </Modal>
+      <SnackBar
+        openSnackbar={openSnackbar}
+        handleCloseSnackbar={handleCloseSnackbar}
+        item={item}
+      />
     </div>
   );
 };

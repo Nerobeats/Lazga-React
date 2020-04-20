@@ -16,7 +16,7 @@ const ItemDetail = () => {
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
-      const scrollCheck = window.scrollY < 240;
+      const scrollCheck = window.scrollY < 173;
       if (scrollCheck !== scroll) {
         setScroll(scrollCheck);
       }
@@ -76,7 +76,7 @@ const ItemDetail = () => {
         style={{ padding: "1rem 0.5rem 1rem 1rem" }}
         className={scroll ? "not-fixed" : "fixed"}
       >
-        <AddToCartDetail item={item} />
+        <AddToCartDetail item={item} scroll={scroll} />
       </Grid>
     </Grid>
   );

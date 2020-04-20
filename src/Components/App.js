@@ -8,6 +8,10 @@ import Footer from "./Footer/Footer";
 import Shop from "./Body/Shop";
 import ItemDetail from "./Body/ItemDetail";
 import CartList from "./Cart/CartList";
+import Profile from "./Profile/Profile";
+import Favorites from "./Profile/Favorites";
+import LoginPage from "./Authentication/LoginPage";
+import SignupPage from "./Authentication/SignupPage";
 
 const App = ({ products, setProducts }) => {
   useEffect(() => {
@@ -27,6 +31,19 @@ const App = ({ products, setProducts }) => {
         <Route path="/cart">
           <CartList />
         </Route>
+        <Route path="/favorites">
+          <Favorites />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/signup">
+          <SignupPage />
+        </Route>
+
         <Redirect exact from="/" to="/shop" />
       </Switch>
       <Grid item xs={12}>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import useWindowDimensions from "../HelperComponents/useWindowDimensions";
 import ItemList from "../Body/ItemList";
 import SideNav from "../SideNav/SideNav";
