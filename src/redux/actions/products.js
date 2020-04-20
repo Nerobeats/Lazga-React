@@ -28,7 +28,7 @@ export const fetchProducts = () => async (dispatch) => {
 };
 
 export const filterProducts = (products, type) => {
-  if (type === 0) {
+  if (type === 5) {
     return { type: FILTER_PRODUCT_TYPE, payload: products };
   }
   let filteredProduct = products.filter((product) => product.type === type);

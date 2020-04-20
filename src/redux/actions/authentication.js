@@ -39,8 +39,9 @@ export const login = (userData, history) => async (dispatch) => {
 export const signup = (userData) => async (dispatch) => {
   try {
     const res = await instance.post("/register/", userData);
-    const { token } = res.data;
-    dispatch(setCurrentUser(token));
+    //const { token } = res.data;
+    //dispatch(setCurrentUser(token));
+    dispatch(login(userData));
   } catch (error) {
     console.error(error);
 

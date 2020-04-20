@@ -3,8 +3,11 @@ import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 import HeaderMiddle from "./HeaderMiddle";
 import Grid from "@material-ui/core/Grid";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  let location = useLocation();
+  console.log(location.pathname);
   return (
     <>
       <Grid item xs={12} className="header-col">
@@ -16,7 +19,7 @@ const Header = () => {
       </Grid>
 
       <Grid item xs={12} className="header-col">
-        <HeaderBottom />
+        {location.pathname !== "/shop" ? <></> : <HeaderBottom />}
       </Grid>
     </>
   );

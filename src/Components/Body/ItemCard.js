@@ -14,7 +14,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
-const ItemCard = ({ item, addToCart }) => {
+const ItemCard = ({ item, addToCart, types }) => {
   const [liked, setLiked] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -28,8 +28,13 @@ const ItemCard = ({ item, addToCart }) => {
     setOpenSnackbar(false);
   };
 
+  let hasProps = {};
+  hasProps = types.map(
+    (type) => (hasProps[type.id] = type.color || type.size || type.magic)
+  );
+
   const handleSubmit = (item) => {
-    if (item.type === 2) {
+    if (hasProps[item.type - types[0].id]) {
       setModalShow(true);
     } else {
       addToCart(item);
@@ -38,7 +43,7 @@ const ItemCard = ({ item, addToCart }) => {
 
   const open = Boolean(false);
   const id = open ? "simple-popover" : undefined;
-
+  console.log(hasProps);
   return (
     <div>
       <Card style={{ maxWidth: "15rem", margin: "1rem 1rem 1rem 1rem" }} raised>
@@ -117,5 +122,10 @@ const mapDispatchToProps = (dispatch) => {
     addToCart: (item) => dispatch(addToCart(item)),
   };
 };
+const mapStateToProps = (state) => {
+  return {
+    types: state.types,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(ItemCard);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCard);

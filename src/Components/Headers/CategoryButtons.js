@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { filterProducts, setProducts } from "../../redux/actions";
 
 const CategoryButtons = ({ products, filterProducts, types }) => {
-  const [categoryType, setCategoryType] = useState(0);
+  const [categoryType, setCategoryType] = useState(5);
 
   const handleClick = (products, category) => {
     setCategoryType(category);

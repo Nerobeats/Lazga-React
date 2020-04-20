@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../../redux/actions";
+import { addToCart, postOrder } from "../../redux/actions";
 import { Modal } from "react-bootstrap";
 import ColorButtons from "./ColorButtons";
 import SizeButtons from "./SizeButtons";
@@ -14,6 +14,7 @@ const AddToCartModal = ({
   id,
   setModalShow,
   setOpenSnackbar,
+  postOrder,
 }) => {
   const [size, setSize] = useState(1);
   const [color, setColor] = useState(1);
@@ -21,7 +22,8 @@ const AddToCartModal = ({
   const [anchorEl, setAnchorEl] = useState(null);
 
   const addItem = (item, color, size, quantity) => {
-    addToCart(item, color, size, quantity);
+    // addToCart(item, quantity, color, size);
+    postOrder(item, quantity, color, size);
     setModalShow(false);
     setOpenSnackbar(true);
   };
@@ -97,6 +99,7 @@ const AddToCartModal = ({
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (item) => dispatch(addToCart(item)),
+    postOrder: (order) => dispatch(postOrder(order)),
   };
 };
 
