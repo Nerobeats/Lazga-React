@@ -1,4 +1,9 @@
-import { FETCH_ORDERS, ADD_ORDER } from "./actionTypes";
+import {
+  FETCH_ORDERS,
+  ADD_ORDER,
+  DELETE_ORDER,
+  SUBMIT_ORDER,
+} from "./actionTypes";
 import instance from "./instance";
 
 export const fetchOrders = () => async (dispatch) => {
@@ -31,5 +36,30 @@ export const postOrder = (order) => async (dispatch) => {
     dispatch(fetchOrders());
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const submitOrder = (order) => async (dispatch) => {
+  try {
+    const res = await instance.put("/submitorder/", order);
+    const submittedOrder = res.data;
+    dispatch({
+      type: SUBMIT_ORDER,
+      payload: submittedOrder,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteOrder = (id) => async (dispatch) => {
+  try {
+    const res = await instance.delete(`/delete/order/${id}`);
+    dispatch({
+      type: DELETE_ORDER,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };

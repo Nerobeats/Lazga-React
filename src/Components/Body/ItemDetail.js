@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import AddToCartDetail from "../Cart/AddToCartDetail";
 import Image from "react-graceful-image";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-const ItemDetail = () => {
+const ItemDetail = ({ types }) => {
   const [scroll, setScroll] = useState(true);
   const scrollToTop = () => {
     window.scrollTo({
@@ -28,10 +29,22 @@ const ItemDetail = () => {
   }, []);
 
   const item = useLocation().state.item;
+
+  let dict = {};
+  types.map((type) => (dict[type.id] = type.type));
+
   const imageUrlResized =
-    item.image_url.substring(0, 64) +
-    "large-" +
-    item.image_url.substring(64, item.image_url.length - 4);
+    dict[item.type] === "Tee's"
+      ? item.image_url.substring(0, 64) +
+        "large-" +
+        item.image_url.substring(64, item.image_url.length - 4)
+      : item.image_url.substring(0, 64) +
+        `${dict[item.type]}/` +
+        "large-" +
+        item.image_url.substring(
+          65 + `${dict[item.type]}`.length,
+          item.image_url.length - 5
+        );
 
   return (
     <Grid container spacing={0} style={{ backgroundColor: "#e8e8ec" }}>
@@ -82,4 +95,10 @@ const ItemDetail = () => {
   );
 };
 
-export default ItemDetail;
+const mapStateToProps = (state) => {
+  return {
+    types: state.types,
+  };
+};
+
+export default connect(mapStateToProps, null)(ItemDetail);

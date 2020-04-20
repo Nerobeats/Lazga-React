@@ -2,6 +2,7 @@ import {
   FETCH_PRODUCTS,
   FILTER_PRODUCT_TYPE,
   SET_PRODUCTS,
+  SET_THEMES,
 } from "./actionTypes";
 import instance from "./instance";
 
@@ -41,6 +42,13 @@ export const filterProducts = (products, type) => {
 export const setProducts = (products) => {
   return {
     type: SET_PRODUCTS,
+    payload: products,
+  };
+};
+
+export const setThemes = (products) => {
+  return {
+    type: SET_THEMES,
     payload: products,
   };
 };

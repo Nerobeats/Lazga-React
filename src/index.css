@@ -490,6 +490,10 @@ ul {
   margin: 1em;
 }
 
+.MuiTableCell-root {
+  border-style: hidden !important;
+}
+
 /* Profile */
 
 .profile-container {

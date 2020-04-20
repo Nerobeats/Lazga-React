@@ -9,6 +9,7 @@ import cartReducer from "./cart";
 import filterProductsReducer from "./filteredProducts";
 import typesReducer from "./types";
 import ordersReducer from "./orders";
+import themesReducer from "./filteredThemes";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   types: typesReducer,
   orders: ordersReducer,
+  filterThemes: themesReducer,
 });
 
 export default rootReducer;

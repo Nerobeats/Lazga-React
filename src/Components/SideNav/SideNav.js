@@ -73,18 +73,23 @@ const SideNav = ({ products, setProducts }) => {
                 label="Movies"
               />
               <FormControlLabel
-                value="tv"
+                value="random"
                 control={<Radio />}
-                label="TV Shows"
+                label="Random"
               />
               <FormControlLabel
                 value="super"
                 control={<Radio />}
                 label="Superheroes"
               />
+              <FormControlLabel
+                value="tv"
+                control={<Radio />}
+                label="TV Shows"
+              />
 
               <FormControlLabel
-                value="game"
+                value="games"
                 control={<Radio />}
                 label="Video Games"
               />

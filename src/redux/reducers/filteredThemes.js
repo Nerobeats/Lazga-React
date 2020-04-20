@@ -1,16 +1,10 @@
-import {
-  FILTER_PRODUCT_TYPE,
-  SET_PRODUCTS,
-  SET_THEMES,
-} from "../actions/actionTypes";
+import { SET_THEMES } from "../actions/actionTypes";
 
 const initialState = [];
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FILTER_PRODUCT_TYPE:
-      return action.payload;
-    case SET_PRODUCTS:
+    case SET_THEMES:
       return action.payload;
     default:
       return state;

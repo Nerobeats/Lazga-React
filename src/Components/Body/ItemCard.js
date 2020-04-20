@@ -47,7 +47,12 @@ const ItemCard = ({ item, addToCart, types }) => {
   return (
     <div>
       <Card style={{ maxWidth: "15rem", margin: "1rem 1rem 1rem 1rem" }} raised>
-        <Link to={{ pathname: `/detail/${item.id}`, state: { item: item } }}>
+        <Link
+          to={{
+            pathname: `/detail/${item.id}`,
+            state: { item: item },
+          }}
+        >
           <div className="img-wrapper">
             <Image
               src={item.image_url}

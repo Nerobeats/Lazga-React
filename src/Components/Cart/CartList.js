@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
-import { fetchOrders } from "../../redux/actions";
+import { fetchOrders, deleteOrder, submitOrder } from "../../redux/actions";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -11,61 +11,127 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import Image from "react-graceful-image";
+import colorsOptions from "../../colors";
 
 // This component is not working yet! It's only here for testing purposes
 
-const CartList = ({ orders }) => {
+const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
   const [data, setData] = useState([]);
+
+  const handleDelete = (order) => {
+    deleteOrder(order);
+    fetchOrders();
+    setData(orders);
+  };
 
   useEffect(() => {
     setData(orders);
   }, [orders]);
 
+  let colorArray = Object.keys(colorsOptions);
+  let sizeArray = ["S", "M", "L", "XL", "2XL"];
+
   if (data.length > 0) {
-    const rows = data[0].products.map((item, index) => (
+    const rows = data[data.length - 1].products.map((order, index) => (
       <TableRow key={index}>
-        <TableCell align="center">
+        <TableCell align="right">
           {" "}
-          <Image src={item.item.image_url} width="240" height="200" alt="img" />
+          <Image
+            src={order.item.image_url}
+            width="200"
+            height="170"
+            alt="img"
+          />
         </TableCell>
-        <TableCell align="center">{item.item.name}</TableCell>
-        <TableCell align="center">{item.quantity}</TableCell>
+        <TableCell align="left">
+          {order.item.name}
+          <br />
+          {colorArray[order.color - 1]}
+          <br />
+          {sizeArray[order.size - 1]}
+          <br />
+        </TableCell>
+        <TableCell align="center">{order.quantity}</TableCell>
         <TableCell align="center">
-          ({item.quantity}* {item.item.itemPrice} JOD) =
-          {item.item.itemPrice * item.quantity} JOD
+          {order.item.itemPrice * order.quantity} JOD
         </TableCell>
         <TableCell align="center">
           <Button variant="outlined" className="circle-button-sm">
-            <DeleteIcon onClick={() => alert("I DO NOTHING")} />
-          </Button>
-          <Button variant="outlined" className="circle-button-sm">
-            <EditIcon onClick={() => alert("I DO NOTHING")} />
+            <DeleteIcon onClick={() => handleDelete(order.id)} />
           </Button>
         </TableCell>
       </TableRow>
     ));
-    return (
-      <Grid container style={{ justifyContent: "center", minHeight: "2160px" }}>
-        <TableContainer component={Paper} style={{ width: "60%" }}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Item</TableCell>
-                <TableCell align="center">Name</TableCell>
-                <TableCell align="center">QTY</TableCell>
-                <TableCell align="center">Price</TableCell>
-                <TableCell align="center">Edit/Delete</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>{rows}</TableBody>
-          </Table>
-        </TableContainer>
-      </Grid>
-    );
+
+    if (rows.length > 0) {
+      return (
+        <Grid
+          container
+          style={{
+            justifyContent: "center",
+            width: "100%",
+            minHeight: "2160px",
+            textAlign: "center",
+          }}
+        >
+          <TableContainer
+            component={Paper}
+            style={{
+              width: "60rem",
+              minHeight: "1080px",
+              padding: "1rem 0rem 5rem 0rem",
+            }}
+          >
+            {" "}
+            <h3>Your shopping cart</h3>
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">ITEM</TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="center">QTY</TableCell>
+                  <TableCell align="center">PRICE</TableCell>
+                  <TableCell align="center"></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows}
+                <TableRow key={33}>
+                  <TableCell align="center"></TableCell>
+                  <TableCell align="center"></TableCell>{" "}
+                  <TableCell align="center"></TableCell>
+                  <TableCell align="right">
+                    {" "}
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{ padding: "1rem 1rem 1rem 1rem" }}
+                      onClick={() =>
+                        submitOrder({ status: "PR", totalPrice: 350 })
+                      }
+                    >
+                      CHECKOUT
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      );
+    }
   }
-  return <div></div>;
+  return (
+    <Grid
+      container
+      style={{
+        justifyContent: "center",
+        width: "100%",
+        minHeight: "2160px",
+      }}
+    ></Grid>
+  );
 };
 
 const mapStateToProps = (state) => {
@@ -77,6 +143,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchOrders: () => dispatch(fetchOrders()),
+    deleteOrder: (id) => dispatch(deleteOrder(id)),
+    submitOrder: (order) => dispatch(submitOrder(order)),
   };
 };
 

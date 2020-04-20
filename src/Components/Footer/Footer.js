@@ -83,7 +83,7 @@ const Footer = () => {
         <Grid container>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "1rem" }}>
             <p className="copyright-text">
-              Copyright &copy; 2017 All Rights Reserved by
+              Copyright &copy; 2020 All Rights Reserved by
               <a href="#"> Lazga</a>.
             </p>
           </Grid>
