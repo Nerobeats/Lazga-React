@@ -306,6 +306,7 @@ div.scrollmenu:hover {
   top: -1rem !important;
   right: 0rem !important;
   width: 100%;
+
   border-top-left-radius: 0rem !important;
   border-top-right-radius: 0rem !important;
 }

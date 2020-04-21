@@ -17,7 +17,7 @@ const ItemDetail = ({ types }) => {
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
-      const scrollCheck = window.scrollY < 173;
+      const scrollCheck = window.scrollY < 140;
       if (scrollCheck !== scroll) {
         setScroll(scrollCheck);
       }
@@ -47,7 +47,11 @@ const ItemDetail = ({ types }) => {
         );
 
   return (
-    <Grid container spacing={0} style={{ backgroundColor: "#e8e8ec" }}>
+    <Grid
+      container
+      spacing={0}
+      style={{ backgroundColor: "#e8e8ec", minHeight: "1440px" }}
+    >
       <Grid item xs={2}></Grid>
       <Grid item xs={7} style={{ padding: "1rem 1rem 1rem 0rem" }}>
         <Paper
@@ -66,23 +70,7 @@ const ItemDetail = ({ types }) => {
             className="img-detail-lg"
           />
         </Paper>
-        <Grid item xs={12}>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-          abcabcabcabcabcabcabcabcabcabcabcabcabcabc abcabc<br></br>
-        </Grid>
+        <Grid item xs={12}></Grid>
       </Grid>
       <Grid
         xs={3}

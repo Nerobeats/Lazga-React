@@ -15,9 +15,11 @@ const HeaderMiddle = ({ orders, user }) => {
     setData(orders);
   }, [orders]);
 
-  if (data.length > 0) {
-    let cartSize = 0;
-    data[0].products.map((item) => (cartSize += item.quantity));
+  let cartSize = 0;
+  if (data.length > 0 && data[data.length - 1]) {
+    data[data.length - 1].products.map(
+      (product) => (cartSize += product.quantity)
+    );
 
     return (
       <Navbar
@@ -81,7 +83,61 @@ const HeaderMiddle = ({ orders, user }) => {
         </Navbar.Collapse>
       </Navbar>
     );
-  } else return <div></div>;
+  } else
+    return (
+      <Navbar
+        variant="light"
+        bg="header-bottom"
+        expand="lg"
+        style={{ padding: "0.5rem 5rem 0.5rem 5rem" }}
+      >
+        <Navbar.Brand
+          href="/shop" // change to home later
+          style={{
+            padding: "0rem 0rem 0rem 0rem",
+          }}
+        >
+          <img
+            src={
+              "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo-name.png"
+            }
+            style={{
+              width: "8.5rem",
+              height: "3.5rem",
+              padding: "0rem 0rem 0rem 0rem",
+            }}
+            alt="logo-name"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse
+          id="basic-navbar-nav"
+          style={{ justifyContent: "flex-end" }}
+        >
+          <Nav>
+            <Button variant="outlined" className="circle-button-sm">
+              <Badge color="primary">
+                <AccountCircleIcon style={{ fontSize: 40 }} />
+              </Badge>
+            </Button>
+
+            <Button variant="outlined" className="circle-button-sm">
+              <Badge color="primary">
+                <Favorite style={{ fontSize: 40 }} />
+              </Badge>
+            </Button>
+
+            <Link to={{ pathname: "/cart" }}>
+              <Button variant="outlined" className="circle-button-sm">
+                <Badge badgeContent={cartSize} color="primary">
+                  <ShoppingCartIcon style={{ fontSize: 40 }} />
+                </Badge>
+              </Button>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
 };
 
 const mapStateToProps = (state) => {

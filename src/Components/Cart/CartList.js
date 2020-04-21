@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchOrders, deleteOrder, submitOrder } from "../../redux/actions";
 import Grid from "@material-ui/core/Grid";
@@ -14,13 +14,20 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Image from "react-graceful-image";
 import colorsOptions from "../../colors";
 
-// This component is not working yet! It's only here for testing purposes
-
 const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
   const [data, setData] = useState([]);
 
   const handleDelete = (order) => {
     deleteOrder(order);
+    fetchOrders();
+    setData(orders);
+  };
+
+  const submitOrderHandler = (order) => {
+    submitOrder(order);
+    fetchOrders();
+    setData(orders);
+    submitOrder(order);
     fetchOrders();
     setData(orders);
   };
@@ -108,7 +115,7 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
                       color="primary"
                       style={{ padding: "1rem 1rem 1rem 1rem" }}
                       onClick={() =>
-                        submitOrder({ status: "PR", totalPrice: 350 })
+                        submitOrderHandler({ status: "PR", totalPrice: 350 })
                       }
                     >
                       CHECKOUT
@@ -129,8 +136,25 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
         justifyContent: "center",
         width: "100%",
         minHeight: "2160px",
+        paddingTop: "5rem",
+        textAlign: "center",
       }}
-    ></Grid>
+    >
+      <div>
+        <h3>Your shopping cart</h3>
+        <br></br>
+        <small>You have no items in your cart!</small>
+        <br></br>
+
+        <Image
+          src="https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/empty-cart.gif"
+          width="500"
+          height="550"
+          alt="img"
+          style={{ paddingTop: "5rem" }}
+        />
+      </div>
+    </Grid>
   );
 };
 
