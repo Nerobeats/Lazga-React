@@ -12,7 +12,7 @@ const Profile = ({ user }) => {
         <Paper elevation={5} style={{ display: "flex" }}>
           <Grid item xs={3}>
             <Image
-              src="#"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTmAYYpZrE4oNHmJKnwNjSAIwBCulHsImsCbgl1eYNnpiJtDfYe&usqp=CAU"
               width="373"
               height="373"
               alt="large image"
