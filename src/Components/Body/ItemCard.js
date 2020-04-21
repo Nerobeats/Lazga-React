@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../../redux/actions";
+import { addToCart, addFavorite, removeFavorite } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import AddToCartModal from "../Cart/AddToCartModal";
 import SnackBar from "../Cart/SnackBar";
@@ -14,12 +14,41 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
-const ItemCard = ({ item, addToCart, types }) => {
+const ItemCard = ({
+  item,
+  types,
+  user,
+  addFavorite,
+  removeFavorite,
+  profile,
+}) => {
   const [liked, setLiked] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  const handleLikeButton = () => setLiked(!liked);
+  useEffect(() => {
+    if (user) {
+      console.log("HERE", user);
+      profile.favorites.forEach((obj) => {
+        if (obj.id === item.id) {
+          setLiked(true);
+        }
+      });
+    }
+  }, [user]);
+
+  const handleLikeButton = () => {
+    if (user) {
+      if (liked) {
+        removeFavorite(item);
+      } else {
+        addFavorite(item);
+      }
+      setLiked(!liked);
+    } else {
+      alert("Please Log In");
+    }
+  };
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
@@ -34,16 +63,17 @@ const ItemCard = ({ item, addToCart, types }) => {
   );
 
   const handleSubmit = (item) => {
-    if (hasProps[item.type - types[0].id]) {
+    // if (hasProps[item.type - types[0].id]) {
+    if (user) {
       setModalShow(true);
     } else {
-      addToCart(item);
+      alert("Please Log In");
     }
   };
 
   const open = Boolean(false);
   const id = open ? "simple-popover" : undefined;
-  console.log(hasProps);
+
   return (
     <div>
       <Card style={{ maxWidth: "15rem", margin: "1rem 1rem 1rem 1rem" }} raised>
@@ -125,11 +155,15 @@ const ItemCard = ({ item, addToCart, types }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (item) => dispatch(addToCart(item)),
+    addFavorite: (item) => dispatch(addFavorite(item)),
+    removeFavorite: (item) => dispatch(removeFavorite(item)),
   };
 };
 const mapStateToProps = (state) => {
   return {
     types: state.types,
+    user: state.user,
+    profile: state.profile,
   };
 };
 

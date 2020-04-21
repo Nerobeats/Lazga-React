@@ -1,5 +1,6 @@
 // User Actions
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const SET_CURRENT_PROFILE = "SET_CURRENT_PROFILE";
 
 // Errors
 export const SET_ERRORS = "SET_ERRORS";
@@ -23,3 +24,7 @@ export const DELETE_ORDER = "DELETE_ORDER";
 
 // CART
 export const ADD_TO_CART = "ADD_TO_CART";
+
+// Favorites
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";

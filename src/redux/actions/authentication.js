@@ -1,4 +1,8 @@
-import { SET_CURRENT_USER, SET_ERRORS } from "./actionTypes";
+import {
+  SET_CURRENT_USER,
+  SET_ERRORS,
+  SET_CURRENT_PROFILE,
+} from "./actionTypes";
 import decode from "jwt-decode";
 import instance from "./instance";
 
@@ -12,13 +16,26 @@ export const setAuthToken = (token) => {
   }
 };
 
-export const setCurrentUser = (token) => {
+export const setCurrentUser = (token) => async (dispatch) => {
   setAuthToken(token);
-  const user = token ? decode(token) : null;
-  return {
+  let user = null;
+  let profile = null;
+  if (token) {
+    const decodedToken = decode(token);
+    const id = decodedToken.user_id;
+    const res = await instance.get(`/user/${id}/detail/`);
+    const res2 = await instance.get(`/profile/${id}/detail/`);
+    profile = res2.data;
+    user = res.data;
+  }
+  dispatch({
+    type: SET_CURRENT_PROFILE,
+    payload: profile,
+  });
+  return dispatch({
     type: SET_CURRENT_USER,
     payload: user,
-  };
+  });
 };
 
 export const login = (userData, history) => async (dispatch) => {
@@ -63,4 +80,19 @@ export const checkForExpiredToken = () => {
     }
   }
   return setCurrentUser();
+};
+
+export const fetchProfile = () => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  let profile = null;
+  if (token) {
+    const decodedToken = decode(token);
+    const id = decodedToken.user_id;
+    const res2 = await instance.get(`/profile/${id}/detail/`);
+    profile = res2.data;
+  }
+  return dispatch({
+    type: SET_CURRENT_PROFILE,
+    payload: profile,
+  });
 };

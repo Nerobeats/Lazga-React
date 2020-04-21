@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 
 const Header = () => {
   let location = useLocation();
-  console.log(location.pathname);
+
   return (
     <>
       <Grid item xs={12} className="header-col">

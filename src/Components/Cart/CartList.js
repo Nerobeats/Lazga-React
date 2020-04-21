@@ -27,7 +27,6 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
     submitOrder(order);
     fetchOrders();
     setData(orders);
-    submitOrder(order);
     fetchOrders();
     setData(orders);
   };
@@ -40,7 +39,12 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
   let sizeArray = ["S", "M", "L", "XL", "2XL"];
 
   if (data.length > 0) {
-    const rows = data[data.length - 1].products.map((order, index) => (
+    let currentData = data.find((order) => order.status === "NS");
+    let total = 0;
+    currentData.products.map(
+      (order) => (total += order.item.itemPrice * order.quantity)
+    );
+    const rows = currentData.products.map((order, index) => (
       <TableRow key={index}>
         <TableCell align="right">
           {" "}
@@ -109,17 +113,22 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
                   <TableCell align="center"></TableCell>{" "}
                   <TableCell align="center"></TableCell>
                   <TableCell align="right">
-                    {" "}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      style={{ padding: "1rem 1rem 1rem 1rem" }}
-                      onClick={() =>
-                        submitOrderHandler({ status: "PR", totalPrice: 350 })
-                      }
-                    >
-                      CHECKOUT
-                    </Button>
+                    <h5>
+                      Total Price: {total} JOD &nbsp;&nbsp;&nbsp;
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        style={{ padding: "1rem 1rem 1rem 1rem" }}
+                        onClick={() =>
+                          submitOrderHandler({
+                            status: "PR",
+                            totalPrice: total,
+                          })
+                        }
+                      >
+                        CHECKOUT
+                      </Button>
+                    </h5>
                   </TableCell>
                 </TableRow>
               </TableBody>

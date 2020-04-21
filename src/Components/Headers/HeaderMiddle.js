@@ -16,10 +16,14 @@ const HeaderMiddle = ({ orders, user }) => {
   }, [orders]);
 
   let cartSize = 0;
-  if (data.length > 0 && data[data.length - 1]) {
-    data[data.length - 1].products.map(
-      (product) => (cartSize += product.quantity)
+  if (data.length > 0) {
+    let currentData = data.find((order) => order.status === "NS");
+    let total = 0;
+    currentData.products.map(
+      (order) => (total += order.item.itemPrice * order.quantity)
     );
+
+    currentData.products.map((product) => (cartSize += product.quantity));
 
     return (
       <Navbar
@@ -115,17 +119,23 @@ const HeaderMiddle = ({ orders, user }) => {
           style={{ justifyContent: "flex-end" }}
         >
           <Nav>
-            <Button variant="outlined" className="circle-button-sm">
-              <Badge color="primary">
-                <AccountCircleIcon style={{ fontSize: 40 }} />
-              </Badge>
-            </Button>
+            {user ? (
+              <>
+                <Button variant="outlined" className="circle-button-sm">
+                  <Badge color="primary">
+                    <AccountCircleIcon style={{ fontSize: 40 }} />
+                  </Badge>
+                </Button>
 
-            <Button variant="outlined" className="circle-button-sm">
-              <Badge color="primary">
-                <Favorite style={{ fontSize: 40 }} />
-              </Badge>
-            </Button>
+                <Button variant="outlined" className="circle-button-sm">
+                  <Badge color="primary">
+                    <Favorite style={{ fontSize: 40 }} />
+                  </Badge>
+                </Button>
+              </>
+            ) : (
+              <></>
+            )}
 
             <Link to={{ pathname: "/cart" }}>
               <Button variant="outlined" className="circle-button-sm">

@@ -26,6 +26,7 @@ export const postOrder = (order) => async (dispatch) => {
       quantity: order.quantity,
       color: order.color,
       size: order.size,
+      magic: order.magic,
     };
     const res = await instance.post("/additem/", item);
     const newOrder = res.data;
@@ -60,6 +61,6 @@ export const deleteOrder = (id) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

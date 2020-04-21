@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../../redux/actions";
+import { addToCart, postOrder } from "../../redux/actions";
 import { Modal } from "react-bootstrap";
 import SizeButtons from "./SizeButtons";
 import ColorButtons from "./ColorButtons";
@@ -10,15 +10,21 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Paper from "@material-ui/core/Paper";
+import Checkbox from "@material-ui/core/Checkbox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons";
 
-export const AddToCartDetail = ({ item, addToCart, id, scroll }) => {
+export const AddToCartDetail = ({ item, addToCart, id, postOrder }) => {
   const [modalShow, setModalShow] = useState(false);
   const [size, setSize] = useState(1);
   const [color, setColor] = useState(1);
   const [quantity, setQuantity] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [magic, setMagic] = useState(false);
+
+  const addItem = (item, color, size, magic, quantity) => {
+    postOrder(item, color, size, magic, quantity);
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -35,26 +41,56 @@ export const AddToCartDetail = ({ item, addToCart, id, scroll }) => {
       >
         <h4>{item.name}</h4>
         <h5 style={{ padding: "2rem 0rem 2rem 0rem" }}>{item.itemPrice} JOD</h5>
-        <ButtonGroup aria-label="size">
-          <SizeButtons
-            anchorEl={anchorEl}
-            setAnchorEl={setAnchorEl}
-            size={size}
-            setSize={setSize}
-          />
-        </ButtonGroup>
-        <br></br>
+        {item.type === 6 ? (
+          <>
+            <ButtonGroup aria-label="size">
+              <SizeButtons
+                anchorEl={anchorEl}
+                setAnchorEl={setAnchorEl}
+                size={size}
+                setSize={setSize}
+              />
+            </ButtonGroup>
+            <br></br>{" "}
+          </>
+        ) : (
+          <></>
+        )}
+
         <QuantityInput quantity={quantity} setQuantity={setQuantity} />
-        <br></br>
-        <br></br>
-        <ColorButtons
-          anchorEl={anchorEl}
-          setAnchorEl={setAnchorEl}
-          color={color}
-          setColor={setColor}
-          id={id}
-          handleClose={handleClose}
-        />{" "}
+        {item.type === 7 ? (
+          <div style={{ padding: "0rem 0rem 0rem 0rem" }}>
+            <h6 style={{ padding: "1rem 0rem 0rem 0rem" }}>
+              Magic Mug:{" "}
+              <Checkbox
+                checked={magic}
+                color="primary"
+                onChange={(event) => setMagic(event.target.checked)}
+                inputProps={{ "aria-label": "primary checkbox" }}
+              />
+            </h6>
+          </div>
+        ) : (
+          <></>
+        )}
+        {item.type === 6 ? (
+          <>
+            {" "}
+            <br></br>
+            <br></br>
+            <ColorButtons
+              anchorEl={anchorEl}
+              setAnchorEl={setAnchorEl}
+              color={color}
+              setColor={setColor}
+              id={id}
+              handleClose={handleClose}
+            />
+          </>
+        ) : (
+          <></>
+        )}
+
         <br></br>
         <br></br>
         <Button
@@ -64,7 +100,7 @@ export const AddToCartDetail = ({ item, addToCart, id, scroll }) => {
             padding: "0.5rem 1rem 0.5rem 1rem",
             borderRadius: "50rem",
           }}
-          onClick={() => addToCart({ item, color, size, quantity })}
+          onClick={() => addItem({ item, color, size, quantity })}
         >
           <AddShoppingCartIcon />
           <text style={{ padding: "0.25rem 1rem 0.25rem 1rem" }}>
@@ -135,6 +171,7 @@ export const AddToCartDetail = ({ item, addToCart, id, scroll }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (item) => dispatch(addToCart(item)),
+    postOrder: (order) => dispatch(postOrder(order)),
   };
 };
 

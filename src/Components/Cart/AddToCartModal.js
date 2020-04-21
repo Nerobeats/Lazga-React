@@ -7,10 +7,10 @@ import SizeButtons from "./SizeButtons";
 import QuantityInput from "./QuantityInput";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const AddToCartModal = ({
   item,
-  addToCart,
   id,
   setModalShow,
   setOpenSnackbar,
@@ -20,9 +20,9 @@ const AddToCartModal = ({
   const [color, setColor] = useState(1);
   const [quantity, setQuantity] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [magic, setMagic] = useState(false);
 
   const addItem = (item, color, size, quantity) => {
-    // addToCart(item, quantity, color, size);
     postOrder(item, quantity, color, size);
     setModalShow(false);
     setOpenSnackbar(true);
@@ -49,29 +49,52 @@ const AddToCartModal = ({
               <h4 style={{ padding: "1rem 1rem 1rem 1rem" }}>
                 Price: {item.itemPrice} JOD
               </h4>
-              <div style={{ padding: "0rem 1rem 0rem 1rem" }}>
-                {" "}
-                <SizeButtons
-                  anchorEl={anchorEl}
-                  setAnchorEl={setAnchorEl}
-                  size={size}
-                  setSize={setSize}
-                  id={id}
-                />
-              </div>
+              {item.type === 6 ? (
+                <div style={{ padding: "0rem 1rem 0rem 1rem" }}>
+                  {" "}
+                  <SizeButtons
+                    anchorEl={anchorEl}
+                    setAnchorEl={setAnchorEl}
+                    size={size}
+                    setSize={setSize}
+                    id={id}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
               <div style={{ padding: "0rem 1rem 2rem 1rem" }}>
                 <QuantityInput quantity={quantity} setQuantity={setQuantity} />
               </div>
-              <div className="ml-3 mb-5">
-                <ColorButtons
-                  anchorEl={anchorEl}
-                  setAnchorEl={setAnchorEl}
-                  color={color}
-                  setColor={setColor}
-                  id={id}
-                  handleClose={handleClose}
-                />
-              </div>
+              {item.type === 6 ? (
+                <div className="ml-3 mb-5">
+                  <ColorButtons
+                    anchorEl={anchorEl}
+                    setAnchorEl={setAnchorEl}
+                    color={color}
+                    setColor={setColor}
+                    id={id}
+                    handleClose={handleClose}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+              {item.type === 7 ? (
+                <div style={{ padding: "0rem 1rem 2rem 1rem" }}>
+                  <h6 style={{ padding: "1rem 1rem 0rem 1rem" }}>
+                    Magic Mug:{" "}
+                    <Checkbox
+                      checked={magic}
+                      color="primary"
+                      onChange={(event) => setMagic(event.target.checked)}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                    />
+                  </h6>
+                </div>
+              ) : (
+                <></>
+              )}
               <div className="ml-3 mb-3 mt-3">
                 <Button
                   variant="contained"
@@ -80,7 +103,9 @@ const AddToCartModal = ({
                     padding: "0.5rem 1rem 0.5rem 1rem",
                     borderRadius: "50rem",
                   }}
-                  onClick={() => addItem({ item, color, size, quantity })}
+                  onClick={() =>
+                    addItem({ item, color, size, magic, quantity })
+                  }
                 >
                   <AddShoppingCartIcon />
                   <text style={{ padding: "0rem 1rem 0rem 1rem" }}>

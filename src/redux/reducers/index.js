@@ -10,6 +10,7 @@ import filterProductsReducer from "./filteredProducts";
 import typesReducer from "./types";
 import ordersReducer from "./orders";
 import themesReducer from "./filteredThemes";
+import profileReducer from "./profile";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   types: typesReducer,
   orders: ordersReducer,
   filterThemes: themesReducer,
+  profile: profileReducer,
 });
 
 export default rootReducer;
