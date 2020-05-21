@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { filterProducts, setProducts } from "../../redux/actions";
 
-const CategoryButtons = ({ products, filterProducts, types }) => {
+const CategoryButtons = ({
+  products,
+  filterProducts,
+  filteredProducts,
+  types,
+}) => {
   const [categoryType, setCategoryType] = useState(5);
 
   const handleClick = (products, category) => {
@@ -12,17 +19,19 @@ const CategoryButtons = ({ products, filterProducts, types }) => {
   };
 
   let categoryButtons = types.map((type, index) => (
-    <Button
-      key={index}
-      variant="contained"
-      disabled={categoryType === type.id ? true : false}
-      onClick={() => handleClick(products, type.id)}
-      style={{
-        margin: "1rem 1rem 1rem 1rem",
-      }}
-    >
-      {type.type}
-    </Button>
+    <Link to={`/shop/${type.id}`}>
+      <Button
+        key={index}
+        variant="contained"
+        disabled={categoryType === type.id ? true : false}
+        onClick={() => handleClick(products, type.id)}
+        style={{
+          margin: "1rem 1rem 1rem 1rem",
+        }}
+      >
+        <Typography style={{ fontWeight: "1000" }}>{type.type}</Typography>
+      </Button>
+    </Link>
   ));
   return (
     <div className="row mb-3  category-buttons">
@@ -35,6 +44,7 @@ const mapStateToProps = (state) => {
   return {
     products: state.products,
     types: state.types,
+    filteredProducts: state.filteredProducts,
   };
 };
 

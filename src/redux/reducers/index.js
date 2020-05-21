@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   errorsState: errorsReducer,
   products: productsReducer,
-  filterProducts: filterProductsReducer,
+  filteredProducts: filterProductsReducer,
   cart: cartReducer,
   types: typesReducer,
   orders: ordersReducer,

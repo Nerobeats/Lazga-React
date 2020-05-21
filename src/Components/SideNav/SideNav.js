@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setProducts } from "../../redux/actions";
+import { useLocation } from "react-router-dom";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,11 +9,12 @@ import Radio from "@material-ui/core/Radio";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import SearchBar from "../Headers/SearchBar";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const SideNav = ({ products, setProducts }) => {
+const SideNav = ({ products, setProducts, types }) => {
   const [value, setValue] = useState("");
+
+  let location = useLocation();
 
   const handleChangeFirst = (event) => {
     setValue(event.target.value);
@@ -20,9 +22,17 @@ const SideNav = ({ products, setProducts }) => {
 
   const filterItems = () => {
     return products.filter((item) => {
-      return `${item.tags} ${item.description}`.toLowerCase().includes(value);
+      let itemType = location.pathname.substring(6, location.pathname.length);
+      return (
+        `${item.tags} ${item.description}`.toLowerCase().includes(value) &&
+        (itemType == 5 || item.type == itemType)
+      );
     });
   };
+
+  useEffect(() => {
+    setValue("");
+  }, [location]);
 
   useEffect(() => {
     const filteredItems = filterItems();
@@ -30,9 +40,7 @@ const SideNav = ({ products, setProducts }) => {
   }, [value]);
 
   return (
-    <div>
-      {" "}
-      <SearchBar />
+    <div className="sidenav" style={{ paddingTop: "1rem" }}>
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -104,6 +112,8 @@ const SideNav = ({ products, setProducts }) => {
 const mapStateToProps = (state) => {
   return {
     products: state.products,
+    filteredProducts: state.filteredProducts,
+    types: state.types,
   };
 };
 

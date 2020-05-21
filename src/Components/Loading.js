@@ -3,19 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Loading = () => (
-  <div className="mx-auto text-center">
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <FontAwesomeIcon icon={faSpinner} spin size="5x" />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+  <div className="centered">
+    <FontAwesomeIcon
+      icon={faSpinner}
+      spin
+      size="10x"
+      style={{ color: "rgba(0,0,255,0.5)" }}
+    />
   </div>
 );
 

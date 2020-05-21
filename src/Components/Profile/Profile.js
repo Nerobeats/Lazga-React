@@ -10,31 +10,20 @@ const Profile = ({ user }) => {
     <Grid container className="profile-container" spacing={3}>
       <Grid item xs={12}>
         <Paper elevation={5} style={{ display: "flex" }}>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <Image
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTmAYYpZrE4oNHmJKnwNjSAIwBCulHsImsCbgl1eYNnpiJtDfYe&usqp=CAU"
               width="373"
               height="373"
               alt="large image"
-              className="img-detail-lg"
             />
           </Grid>
-          <Grid item className="profile-about" xs={3}>
-            <h3>About {user ? user.username : ""}</h3>
+          <Grid item className="profile-about" xs={6}>
+            <h1>About {user ? user.username : ""}</h1>
             <br />
-            <h6>Name: {user ? user.first_name + " " + user.last_name : ""}</h6>
+            <h4>Name: {user ? user.first_name + " " + user.last_name : ""}</h4>
             <br />
             <small>Joined April 21, 2020</small>
-          </Grid>
-          <Grid item className="profile-about" xs={5}>
-            <h3>Bio:</h3> Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum. Curabitur pretium tincidunt lacus.
           </Grid>
         </Paper>
       </Grid>

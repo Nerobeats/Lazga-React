@@ -27,10 +27,18 @@ const HeaderTop = ({ user, logout, resetErrors }) => {
         expand="lg"
         style={{ textAlign: "right" }}
       >
-        <Nav className="ml-auto">
+        <Nav
+          className="ml-auto"
+          style={{ padding: "0rem 11% 0rem 11%", flexDirection: "row" }}
+        >
           {!user ? (
             <>
-              <Nav.Link onClick={() => setShowLogin(true)}>Login</Nav.Link>
+              <Nav.Link
+                onClick={() => setShowLogin(true)}
+                style={{ paddingRight: "1rem" }}
+              >
+                Login
+              </Nav.Link>
               <Nav.Link onClick={() => setShowSignup(true)}>Signup</Nav.Link>
             </>
           ) : (

@@ -15,7 +15,6 @@ export const fetchProducts = () => async (dispatch) => {
       type: FETCH_PRODUCTS,
       payload: products,
     });
-    // }
   } catch (error) {
     console.error(error);
   }

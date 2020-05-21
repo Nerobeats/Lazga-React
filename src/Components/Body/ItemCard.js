@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addToCart, addFavorite, removeFavorite } from "../../redux/actions";
+import {
+  addToCart,
+  addFavorite,
+  removeFavorite,
+  fetchProfile,
+} from "../../redux/actions";
 import { Link } from "react-router-dom";
 import AddToCartModal from "../Cart/AddToCartModal";
 import SnackBar from "../Cart/SnackBar";
@@ -20,31 +25,23 @@ const ItemCard = ({
   user,
   addFavorite,
   removeFavorite,
-  profile,
+  fetchProfile,
+  favorited,
 }) => {
-  const [liked, setLiked] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  useEffect(() => {
-    if (user) {
-      console.log("HERE", user);
-      profile.favorites.forEach((obj) => {
-        if (obj.id === item.id) {
-          setLiked(true);
-        }
-      });
-    }
-  }, [user]);
-
   const handleLikeButton = () => {
     if (user) {
-      if (liked) {
+      if (favorited) {
         removeFavorite(item);
       } else {
         addFavorite(item);
       }
-      setLiked(!liked);
+      favorited = !favorited;
+      setTimeout(() => {
+        fetchProfile();
+      }, 50);
     } else {
       alert("Please Log In");
     }
@@ -110,7 +107,7 @@ const ItemCard = ({
                 color="inherit"
                 onClick={() => handleLikeButton()}
               >
-                {liked ? (
+                {favorited ? (
                   <Favorite style={{ color: "red" }} />
                 ) : (
                   <FavoriteBorder />
@@ -157,6 +154,7 @@ const mapDispatchToProps = (dispatch) => {
     addToCart: (item) => dispatch(addToCart(item)),
     addFavorite: (item) => dispatch(addFavorite(item)),
     removeFavorite: (item) => dispatch(removeFavorite(item)),
+    fetchProfile: () => dispatch(fetchProfile()),
   };
 };
 const mapStateToProps = (state) => {

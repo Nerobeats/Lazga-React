@@ -88,8 +88,8 @@ export const fetchProfile = () => async (dispatch) => {
   if (token) {
     const decodedToken = decode(token);
     const id = decodedToken.user_id;
-    const res2 = await instance.get(`/profile/${id}/detail/`);
-    profile = res2.data;
+    const res = await instance.get(`/profile/${id}/detail/`);
+    profile = res.data;
   }
   return dispatch({
     type: SET_CURRENT_PROFILE,

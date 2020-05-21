@@ -19,7 +19,11 @@ const Header = () => {
       </Grid>
 
       <Grid item xs={12} className="header-col">
-        {location.pathname !== "/shop" ? <></> : <HeaderBottom />}
+        {location.pathname.substring(0, 5) !== "/shop" ? (
+          <></>
+        ) : (
+          <HeaderBottom />
+        )}
       </Grid>
     </>
   );

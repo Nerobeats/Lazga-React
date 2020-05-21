@@ -64,8 +64,8 @@ const ItemDetail = ({ types }) => {
         >
           <Image
             src={imageUrlResized}
-            width="1056"
-            height="891"
+            width="826"
+            height="700"
             alt="large image"
             className="img-detail-lg"
           />
@@ -74,8 +74,9 @@ const ItemDetail = ({ types }) => {
       </Grid>
       <Grid
         xs={3}
-        style={{ padding: "1rem 0.5rem 1rem 1rem" }}
-        className={scroll ? "not-fixed" : "fixed"}
+        style={{ padding: "1rem 1rem 1rem 1rem", width: "720px" }}
+        // className={scroll ? "not-fixed" : "fixed"}
+        className="not-fixed"
       >
         <AddToCartDetail item={item} scroll={scroll} />
       </Grid>

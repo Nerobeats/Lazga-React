@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
 import Paginator from "../HelperComponents/Paginator";
 import { CardDeck } from "react-bootstrap";
+import { CardContent, Grid, Card } from "@material-ui/core";
 import { connect } from "react-redux";
 import { setProducts } from "../../redux/actions";
 
-const ItemList = ({ products, filterProducts }) => {
+const ItemList = ({ products, filteredProducts, profile }) => {
   const pageLimit = 30;
 
   const [offset, setOffset] = useState(0);
@@ -22,26 +23,47 @@ const ItemList = ({ products, filterProducts }) => {
 
   useEffect(() => {
     setProducts(products);
-    setData(filterProducts);
-  }, [products, filterProducts]);
+    setData(filteredProducts);
+  }, [products, filteredProducts]);
 
   useEffect(() => {
-    if (filterProducts) {
-      setCurrentData(filterProducts.slice(offset, offset + pageLimit));
+    if (filteredProducts) {
+      setCurrentData(filteredProducts.slice(offset, offset + pageLimit));
       scrollToTop();
     }
-  }, [offset, filterProducts, data]);
+  }, [offset, filteredProducts, data]);
 
-  const rows = currentData.map((item, index) => (
+  var rows = currentData.map((item, index) => (
     <div>
-      {" "}
-      <ItemCard key={index} item={item} />
+      <ItemCard
+        favorited={false}
+        filteredProducts={filteredProducts}
+        key={index}
+        item={item}
+      />
     </div>
   ));
 
+  if (profile) {
+    const favIDs = profile.favorites.map((item) => item.id);
+
+    rows = currentData.map((item, index) => (
+      <div>
+        <ItemCard
+          favorited={favIDs.includes(item.id)}
+          filteredProducts={filteredProducts}
+          key={index}
+          item={item}
+        />
+      </div>
+    ));
+  }
+
   return (
     <div>
-      <CardDeck style={{ paddingLeft: "2rem" }}>{rows}</CardDeck>
+      <CardDeck className="card-deck" style={{ paddingLeft: "2rem" }}>
+        {rows}
+      </CardDeck>
       <Paginator
         totalRecords={data.length}
         pageLimit={pageLimit}
@@ -56,7 +78,8 @@ const ItemList = ({ products, filterProducts }) => {
 const mapStateToProps = (state) => {
   return {
     products: state.products,
-    filterProducts: state.filterProducts,
+    filteredProducts: state.filteredProducts,
+    profile: state.profile,
   };
 };
 

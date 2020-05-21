@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import Favorite from "@material-ui/icons/Favorite";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import SearchBar from "./SearchBar";
 
 const HeaderMiddle = ({ orders, user }) => {
   const [data, setData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     setData(orders);
   }, [orders]);
+
+  const delayRedirect = (event) => {
+    setTimeout(() => {
+      console.log("this ran");
+      history.push("/shop/5");
+    }, 100);
+  };
 
   let cartSize = 0;
   if (data.length > 0) {
@@ -30,31 +39,41 @@ const HeaderMiddle = ({ orders, user }) => {
         variant="light"
         bg="header-bottom"
         expand="lg"
-        style={{ padding: "0.5rem 5rem 0.5rem 5rem" }}
+        style={{ padding: "0.5rem 11% 0.5rem 11%" }}
       >
         <Navbar.Brand
-          href="/shop" // change to home later
           style={{
             padding: "0rem 0rem 0rem 0rem",
           }}
         >
-          <img
-            src={
-              "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo-name.png"
-            }
-            style={{
-              width: "8.5rem",
-              height: "3.5rem",
-              padding: "0rem 0rem 0rem 0rem",
-            }}
-            alt="logo-name"
-          />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <div onClick={delayRedirect} style={{ cursor: "pointer" }}>
+            <img
+              src={
+                "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo-name.png"
+              }
+              style={{
+                width: "8.5rem",
+                height: "3.5rem",
+                padding: "0rem 0rem 0rem 0rem",
+              }}
+              alt="logo-name"
+            />
+          </div>
+        </Navbar.Brand>{" "}
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />{" "}
         <Navbar.Collapse
           id="basic-navbar-nav"
           style={{ justifyContent: "flex-end" }}
         >
+          <div
+            style={
+              user
+                ? { width: "100%", padding: "0 5% 0 10%" }
+                : { width: "100%", padding: "0 10% 0 5%" }
+            }
+          >
+            <SearchBar />
+          </div>
           <Nav>
             {user ? (
               <>
@@ -71,7 +90,7 @@ const HeaderMiddle = ({ orders, user }) => {
                       <Favorite style={{ fontSize: 40 }} />
                     </Badge>
                   </Button>
-                </Link>
+                </Link>{" "}
               </>
             ) : (
               <></>
@@ -82,19 +101,14 @@ const HeaderMiddle = ({ orders, user }) => {
                   <ShoppingCartIcon style={{ fontSize: 40 }} />
                 </Badge>
               </Button>
-            </Link>
+            </Link>{" "}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     );
   } else
     return (
-      <Navbar
-        variant="light"
-        bg="header-bottom"
-        expand="lg"
-        style={{ padding: "0.5rem 5rem 0.5rem 5rem" }}
-      >
+      <Navbar variant="light" bg="header-bottom" expand="lg">
         <Navbar.Brand
           href="/shop" // change to home later
           style={{
@@ -112,8 +126,11 @@ const HeaderMiddle = ({ orders, user }) => {
             }}
             alt="logo-name"
           />
-        </Navbar.Brand>
+        </Navbar.Brand>{" "}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <div style={{ width: "100%", padding: "0 10% 0 10%" }}>
+          <SearchBar />
+        </div>
         <Navbar.Collapse
           id="basic-navbar-nav"
           style={{ justifyContent: "flex-end" }}
