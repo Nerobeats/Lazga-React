@@ -17,16 +17,14 @@ const SnackBar = ({ openSnackbar, handleCloseSnackbar, item }) => {
           horizontal: "right",
         }}
         open={openSnackbar}
-        autoHideDuration={6000000}
+        autoHideDuration={4000}
         onClose={handleCloseSnackbar}
         action={
           <React.Fragment>
-            <Image src={item.image_url} width="240" height="200" alt="image" />
-            <Grid style={{ padding: "3rem 3rem 3rem 3rem" }}>
+            <Image src={item.image_url} width="84" height="70" alt="image" />
+            <Grid style={{ padding: "0rem 3rem 0rem 3rem" }}>
               {" "}
-              <h4>Added to Cart</h4>
-              <text>{item.name}</text>
-              <br></br> <br></br>
+              <h5 style={{ fontWeight: "550" }}>Added to Cart</h5>
               <Link to={{ pathname: "/cart" }}>
                 <Button
                   variant="contained"

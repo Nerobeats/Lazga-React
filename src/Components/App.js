@@ -13,6 +13,7 @@ import Favorites from "./Profile/Favorites";
 import LoginPage from "./Authentication/LoginPage";
 import SignupPage from "./Authentication/SignupPage";
 import Loading from "./Loading";
+import Home from "./Home/Home";
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -41,8 +42,11 @@ const App = ({ products, setProducts }) => {
   return (
     <Grid container>
       <Header />
-      <Grid style={{ marginLeft: "10%", marginRight: "10%" }}>
+      <Grid style={{ marginLeft: "10%", marginRight: "10%", flex: "auto" }}>
         <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
           <Route path={re}>
             <Shop />
           </Route>
@@ -64,7 +68,7 @@ const App = ({ products, setProducts }) => {
           <Route path="/signup">
             <SignupPage />
           </Route>
-          <Redirect exact from="/" to="/shop" />
+          <Redirect exact from="/" to="/home" />
         </Switch>
       </Grid>
       <Grid item xs={12}>

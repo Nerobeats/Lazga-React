@@ -49,9 +49,10 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
         <TableCell align="right">
           {" "}
           <Image
+            style={{ borderRadius: "0.25rem" }}
             src={order.item.image_url}
-            width="200"
-            height="170"
+            width="100"
+            height="85"
             alt="img"
           />
         </TableCell>
@@ -89,21 +90,33 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
           <TableContainer
             component={Paper}
             style={{
-              width: "60rem",
+              width: "50rem",
               minHeight: "1080px",
               padding: "1rem 0rem 5rem 0rem",
             }}
           >
             {" "}
-            <h3>Your shopping cart</h3>
+            <h3 style={{ paddingBottom: "1rem" }}>Your shopping cart</h3>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">ITEM</TableCell>
-                  <TableCell align="left"></TableCell>
-                  <TableCell align="center">QTY</TableCell>
-                  <TableCell align="center">PRICE</TableCell>
-                  <TableCell align="center"></TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bold" }}>
+                    ITEM
+                  </TableCell>
+                  <TableCell
+                    align="left"
+                    style={{ fontWeight: "bold" }}
+                  ></TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bold" }}>
+                    QTY
+                  </TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bold" }}>
+                    PRICE
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ fontWeight: "bold" }}
+                  ></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

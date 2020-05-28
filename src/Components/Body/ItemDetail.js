@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AddToCartDetail from "../Cart/AddToCartDetail";
 import Image from "react-graceful-image";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-const ItemDetail = ({ types }) => {
+const ItemDetail = ({ types, products }) => {
   const [scroll, setScroll] = useState(true);
   const scrollToTop = () => {
     window.scrollTo({
@@ -28,7 +28,9 @@ const ItemDetail = ({ types }) => {
     scrollToTop();
   }, []);
 
-  const item = useLocation().state.item;
+  const itemID = useParams().itemID;
+  const item = products.find((element) => element.id == itemID);
+  console.log(item);
 
   let dict = {};
   types.map((type) => (dict[type.id] = type.type));
@@ -87,6 +89,7 @@ const ItemDetail = ({ types }) => {
 const mapStateToProps = (state) => {
   return {
     types: state.types,
+    products: state.products,
   };
 };
 

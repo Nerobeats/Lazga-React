@@ -435,7 +435,7 @@ div.scrollmenu:hover {
 
 ul {
   margin-top: 2rem !important;
-  margin-right: 15rem !important;
+  margin-right: 15rem;
   justify-content: center;
   display: flex;
   list-style-type: none !important;

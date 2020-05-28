@@ -19,8 +19,8 @@ const HeaderMiddle = ({ orders, user }) => {
 
   const delayRedirect = (event) => {
     setTimeout(() => {
-      console.log("this ran");
-      history.push("/shop/5");
+      // history.push("/shop/5");
+      history.push("/home");
     }, 100);
   };
 
@@ -108,24 +108,30 @@ const HeaderMiddle = ({ orders, user }) => {
     );
   } else
     return (
-      <Navbar variant="light" bg="header-bottom" expand="lg">
+      <Navbar
+        variant="light"
+        bg="header-bottom"
+        expand="lg"
+        style={{ padding: "0.5rem 11% 0.5rem 11%" }}
+      >
         <Navbar.Brand
-          href="/shop" // change to home later
           style={{
             padding: "0rem 0rem 0rem 0rem",
           }}
         >
-          <img
-            src={
-              "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo-name.png"
-            }
-            style={{
-              width: "8.5rem",
-              height: "3.5rem",
-              padding: "0rem 0rem 0rem 0rem",
-            }}
-            alt="logo-name"
-          />
+          <div onClick={delayRedirect} style={{ cursor: "pointer" }}>
+            <img
+              src={
+                "https://raw.githubusercontent.com/Nerobeats/Lazga-React/master/public/images/logo-name.png"
+              }
+              style={{
+                width: "8.5rem",
+                height: "3.5rem",
+                padding: "0rem 0rem 0rem 0rem",
+              }}
+              alt="logo-name"
+            />
+          </div>
         </Navbar.Brand>{" "}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <div style={{ width: "100%", padding: "0 10% 0 10%" }}>

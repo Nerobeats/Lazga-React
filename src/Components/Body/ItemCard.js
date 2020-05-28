@@ -81,7 +81,7 @@ const ItemCard = ({
           }}
         >
           <div className="img-wrapper">
-            <Image
+            <img
               src={item.image_url}
               width="240"
               height="200"

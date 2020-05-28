@@ -45,7 +45,7 @@ const Login = ({ login, history, user, errors, fetchOrders }) => {
   return (
     <div>
       {user ? (
-        <Redirect to="/shop" />
+        <Redirect to="/home" />
       ) : (
         <Grid container spacing={3}>
           <Grid item xs={12} style={{ paddingTop: "2rem" }}>

@@ -59,6 +59,13 @@ const ItemList = ({ products, filteredProducts, profile }) => {
     ));
   }
 
+  if (rows.length < 4) {
+    let blank = (
+      <div style={{ minWidth: `${272 * (5 - rows.length)}px` }}></div>
+    );
+    rows.push(blank);
+  }
+
   return (
     <div>
       <CardDeck className="card-deck" style={{ paddingLeft: "2rem" }}>

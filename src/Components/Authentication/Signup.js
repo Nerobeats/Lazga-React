@@ -53,7 +53,7 @@ const Signup = ({ signup, history, user, errors }) => {
   return (
     <div>
       {user ? (
-        <Redirect to="/shop" />
+        <Redirect to="/home" />
       ) : (
         <form onSubmit={handleSubmit}>
           {!!errors.length && (
