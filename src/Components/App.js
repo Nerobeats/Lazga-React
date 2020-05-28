@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { setProducts } from "../redux/actions";
 import Grid from "@material-ui/core/Grid";
@@ -14,6 +14,7 @@ import LoginPage from "./Authentication/LoginPage";
 import SignupPage from "./Authentication/SignupPage";
 import Loading from "./Loading";
 import Home from "./Home/Home";
+import NotFound from "./NotFound";
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -21,6 +22,7 @@ var re = pathToRegexp("/shop*");
 
 const App = ({ products, setProducts }) => {
   const [loading, setLoading] = useState(true);
+  let location = useLocation();
 
   useEffect(() => {
     setProducts(products);
@@ -41,7 +43,7 @@ const App = ({ products, setProducts }) => {
   }
   return (
     <Grid container>
-      <Header />
+      {location.pathname === "/404" ? <></> : <Header />}
       <Grid style={{ marginLeft: "10%", marginRight: "10%", flex: "auto" }}>
         <Switch>
           <Route path="/home">
@@ -69,10 +71,12 @@ const App = ({ products, setProducts }) => {
             <SignupPage />
           </Route>
           <Redirect exact from="/" to="/home" />
+          <Route path="/404" component={NotFound} />
+          <Redirect to="/404" />
         </Switch>
       </Grid>
       <Grid item xs={12}>
-        <Footer />
+        {location.pathname === "/404" ? <></> : <Footer />}
       </Grid>
     </Grid>
   );
