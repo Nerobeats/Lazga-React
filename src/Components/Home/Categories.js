@@ -61,24 +61,11 @@ const useInterval = (callback, delay) => {
   }, [delay]);
 };
 
-const Featured = ({ products }) => {
+const Categories = ({ products, types }) => {
   const noOfCards = 4;
   const chevronWidth = 60;
 
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-
-  // const shuffleArray = (array) => {
-  //   for (var i = array.length - 1; i > 0; i--) {
-  //     var j = Math.floor(Math.random() * (i + 1));
-  //     var temp = array[i];
-  //     array[i] = array[j];
-  //     array[j] = temp;
-  //   }
-  // };
-
-  //  shuffleArray(featuredProducts);
-
-  let featuredProducts = products.filter((product) => product.featured);
 
   useInterval(() => {
     setActiveItemIndex(activeItemIndex + 1);
@@ -86,26 +73,39 @@ const Featured = ({ products }) => {
 
   const classes = useStyles();
 
-  const cards = featuredProducts.map((item) => (
-    <Link
-      to={{
-        pathname: `/detail/${item.id}`,
-        state: { item: item },
-      }}
-    >
-      <div className={classes.card}>
-        <img className={classes.image} src={item.image_url} />
-        <div className={classes.buttonwrapper} style={{ width: "100%" }}></div>
+  let categories = [];
+  for (let i = 0; i < types.length; i++) {
+    let type = types[i];
+    for (let j = 0; j < products.length; j++) {
+      let product = products[j];
+      if (product.type === type.id) {
+        let obj = { photo: product.image_url, type: type.type, id: type.id };
+        categories.push(obj);
+        break;
+      }
+    }
+  }
+
+  const cards = categories.map((category) => (
+    <div className={classes.card}>
+      <img className={classes.image} src={category.photo} />
+      <div className={classes.buttonwrapper} style={{ width: "100%" }}>
+        <Link to={"/shop/" + category.id}>
+          <Button variant="contained" className={classes.button}>
+            <Typography style={{ fontWeight: "600" }}>
+              Shop {category.type}
+            </Typography>
+          </Button>
+        </Link>
       </div>
-    </Link>
+    </div>
   ));
 
   return (
     <div
-      style={{ maxWidth: "1500px", marginBottom: "5rem", marginTop: "5rem" }}
+      style={{ maxWidth: "1500px", marginBottom: "0rem", marginTop: "5rem" }}
     >
-      <Typography className={classes.title}>Featured Products</Typography>
-
+      <Typography className={classes.title}>Shop by Category</Typography>
       <ItemsCarousel
         infiniteLoop
         gutter={12}
@@ -137,4 +137,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Featured);
+export default connect(mapStateToProps, null)(Categories);

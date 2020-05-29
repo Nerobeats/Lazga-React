@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const HomeHeader = () => {
   return (
     <Link to="/shop/5">
-      <div>START SHOPPING NOW (WILL INSERT HEADER LATER HERE)</div>
+      <img
+        style={{ width: "1500px" }}
+        src="https://raw.githubusercontent.com/moe9195/lazga-photos/master/cover2.jpg"
+      />
     </Link>
   );
 };

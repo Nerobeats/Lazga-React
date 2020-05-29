@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Models from "./Models";
 import Featured from "./Featured";
 import HomeHeader from "./HomeHeader";
+import Categories from "./Categories";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +25,7 @@ const Home = () => {
     <div className={classes.root}>
       <HomeHeader />
       <Models />
+      <Categories />
       <Featured />
     </div>
   );
