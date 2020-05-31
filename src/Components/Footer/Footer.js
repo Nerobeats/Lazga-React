@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="site-footer">
       <Grid container>
-        <Grid item xs={4} style={{ margin: "0rem 15rem 0rem 6rem" }}>
+        {/* <Grid item xs={4} style={{ margin: "0rem 15rem 0rem 6rem" }}>
           <h6>About</h6>
           <p className="text-justify">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -19,7 +19,7 @@ const Footer = () => {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur.
           </p>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={1} style={{ margin: "0rem 2rem 0rem 2rem" }}>
           <h6>Shop</h6>

@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 
 const Header = () => {
   let location = useLocation();
+  let isHome = location.pathname.substring(0, 5) === "/home";
 
   return (
     <>
@@ -19,10 +20,11 @@ const Header = () => {
       </Grid>
 
       <Grid item xs={12} className="header-col">
-        {location.pathname.substring(0, 5) !== "/shop" ? (
+        {location.pathname.substring(0, 5) !== "/shop" &&
+        location.pathname.substring(0, 5) !== "/home" ? (
           <></>
         ) : (
-          <HeaderBottom />
+          <HeaderBottom isHome={isHome} />
         )}
       </Grid>
     </>

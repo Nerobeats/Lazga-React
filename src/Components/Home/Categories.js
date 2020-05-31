@@ -2,12 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import ItemsCarousel from "react-items-carousel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Fab from "@material-ui/core/Fab";
+import useWindowDimensions from "./useWindowDimensions";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -17,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     borderRadius: "0.5rem",
-    width: "330px",
+    width: "33vw",
     display: "block",
     position: "relative",
     width: "100%",
@@ -40,37 +37,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "600",
     fontSize: "24px",
     paddingLeft: "1.5rem",
+    textAlign: "left",
   },
 }));
 
-const useInterval = (callback, delay) => {
-  const savedCallback = useRef();
-
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-};
-
 const Categories = ({ products, types }) => {
-  const noOfCards = 4;
-  const chevronWidth = 60;
-
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
-
-  useInterval(() => {
-    setActiveItemIndex(activeItemIndex + 1);
-  }, 3000);
-
+  const { height, width } = useWindowDimensions();
   const classes = useStyles();
 
   let categories = [];
@@ -92,7 +64,7 @@ const Categories = ({ products, types }) => {
       <div className={classes.buttonwrapper} style={{ width: "100%" }}>
         <Link to={"/shop/" + category.id}>
           <Button variant="contained" className={classes.button}>
-            <Typography style={{ fontWeight: "600" }}>
+            <Typography style={{ fontWeight: "600", fontSize: "2vh" }}>
               Shop {category.type}
             </Typography>
           </Button>
@@ -102,30 +74,9 @@ const Categories = ({ products, types }) => {
   ));
 
   return (
-    <div
-      style={{ maxWidth: "1500px", marginBottom: "0rem", marginTop: "5rem" }}
-    >
-      <Typography className={classes.title}>Shop by Category</Typography>
-      <ItemsCarousel
-        infiniteLoop
-        gutter={12}
-        numberOfCards={noOfCards}
-        activeItemIndex={activeItemIndex}
-        requestToChangeActive={setActiveItemIndex}
-        slidesToScroll={1}
-        rightChevron={
-          <Fab color="light" size="small" aria-label="edit">
-            <ChevronRightIcon />
-          </Fab>
-        }
-        leftChevron={
-          <Fab color="light" size="small" aria-label="edit">
-            <ChevronLeftIcon />
-          </Fab>
-        }
-        chevronWidth={chevronWidth}
-        children={cards}
-      />
+    <div style={{ textAlign: "left" }}>
+      <Typography className={classes.title}>Shop Product Range</Typography>
+      {cards}
     </div>
   );
 };

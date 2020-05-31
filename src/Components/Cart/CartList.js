@@ -14,8 +14,28 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Image from "react-graceful-image";
 import colorsOptions from "../../colors";
 
+var _ = require("lodash");
+
 const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
   const [data, setData] = useState([]);
+
+  const makeUnique = (products) => {
+    let result = [];
+    let objs = [];
+    for (let i = 0; i < products.length; i++) {
+      let count = 0;
+      for (let j = 0; j < products.length; j++) {
+        if (_.isEqual(_.omit(products[i], "id"), _.omit(products[j], "id"))) {
+          let obj = products[j];
+          count++;
+          obj["count"] = count;
+          objs.push(obj);
+          products.splice(j, 1);
+        }
+      }
+    }
+    return objs;
+  };
 
   const handleDelete = (order) => {
     deleteOrder(order);
@@ -40,6 +60,10 @@ const CartList = ({ orders, deleteOrder, fetchOrders, submitOrder }) => {
 
   if (data.length > 0) {
     let currentData = data.find((order) => order.status === "NS");
+    console.log("HERE");
+
+    const unique = makeUnique(currentData.products);
+    console.log(unique);
     let total = 0;
     currentData.products.map(
       (order) => (total += order.item.itemPrice * order.quantity)

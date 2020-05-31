@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import CategoryButtons from "./CategoryButtons";
 
-const HeaderBottom = () => {
+const HeaderBottom = ({ isHome }) => {
   return (
     <div
       className="container-flex categories"
@@ -21,7 +21,7 @@ const HeaderBottom = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            <CategoryButtons />
+            <CategoryButtons isHome={isHome} />
           </Nav>
         </Navbar.Collapse>
       </Navbar>

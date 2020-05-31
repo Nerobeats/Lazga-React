@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import ItemsCarousel from "react-items-carousel";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -101,9 +100,7 @@ const Featured = ({ products }) => {
   ));
 
   return (
-    <div
-      style={{ maxWidth: "1500px", marginBottom: "5rem", marginTop: "5rem" }}
-    >
+    <div style={{ maxWidth: "80vw", marginBottom: "5rem", marginTop: "5rem" }}>
       <Typography className={classes.title}>Featured Products</Typography>
 
       <ItemsCarousel

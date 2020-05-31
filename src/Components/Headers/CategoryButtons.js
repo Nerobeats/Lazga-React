@@ -5,12 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { filterProducts, setProducts } from "../../redux/actions";
 
-const CategoryButtons = ({
-  products,
-  filterProducts,
-  filteredProducts,
-  types,
-}) => {
+const CategoryButtons = ({ products, filterProducts, types, isHome }) => {
   const [categoryType, setCategoryType] = useState(5);
 
   const handleClick = (products, category) => {
@@ -23,7 +18,7 @@ const CategoryButtons = ({
       <Button
         key={index}
         variant="contained"
-        disabled={categoryType === type.id ? true : false}
+        disabled={categoryType === type.id && !isHome ? true : false}
         onClick={() => handleClick(products, type.id)}
         style={{
           margin: "1rem 1rem 1rem 1rem",
